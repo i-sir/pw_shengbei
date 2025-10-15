@@ -1,0 +1,99 @@
+<style>
+    .layui-btn .layui-icon {
+        vertical-align: middle !important;
+    }
+</style>
+
+
+
+<div class="form-group" style="display: none;">
+    <label class="col-sm-2 control-label">游戏id:</label>
+    <div class="layui-input-block col-md-6 col-sm-10">
+        <input type="text" name="pid" class="form-control post-params item-left" value="{$pid|default=''}">
+    </div>
+</div>
+<div class="form-group">
+    <label class="col-sm-2 control-label">备注:</label>
+    <div class="layui-input-block col-md-6 col-sm-10">
+        <input type="text" name="name" class="form-control post-params item-left" value="{$name|default=''}">
+    </div>
+</div>
+<div class="form-group">
+    <label class="col-sm-2 control-label">接单人数:</label>
+    <div class="layui-input-block col-md-6 col-sm-10">
+        <input type="number" name="number" class="form-control post-params item-left" value="{$number|default=''}">
+    </div>
+</div>
+
+
+
+<!--单独input-->
+<div class="form-group">
+    <div class="layui-form-item">
+        <label class="col-sm-2 control-label">佣金比例(%):</label>
+        <div class="col-md-6 col-sm-10" style="z-index: 2000!important;" id="data_value00001">
+            <if condition="!empty($commission)">
+                <foreach name="$commission" key="data_key" item="data_val">
+                    <div>
+                        <div class="layui-inline">
+                            <input type="number" name="commission[]" class="form-control post-params" placeholder="佣金"
+                                   value="{$data_val}">
+                        </div>
+                        <div class="layui-inline">
+                            <button type="button"
+                                    class="layui-btn layui-btn-danger layui-btn-sm removeclass">
+                                <i class="layui-icon">&#xe67e;</i></button>
+                        </div>
+                    </div>
+                </foreach>
+            </if>
+
+            <div>
+                <div class="layui-inline">
+                    <input type="number" name="commission[]" class="form-control post-params" placeholder="佣金">
+                </div>
+                <div class="layui-inline">
+                    <button id="button_data_value00001" type="button"
+                            class="layui-btn layui-btn-warm layui-btn-sm">
+                        <i class="layui-icon">&#xe654; </i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!--自定义表单 js部分-->
+<script>
+    layui.use(['element', 'jquery', 'layer', 'form', 'laydate'], function () {
+            var form = layui.form
+                , element = layui.element
+                , laydate = layui.laydate
+                , $ = layui.$;
+
+            //删除动态添加的input输入框
+            $("body").on('click', ".removeclass", function () {
+                //元素移除前校验是否被引用
+                var approvalName = $(this).parent().prev('div.layui-input-inline').children().val();
+                var parentEle = $(this).parent().parent();
+                parentEle.remove();
+            });
+
+            var o = 0;
+            $("#button_data_value00001").click(function () {
+                var this_craft = this.value;
+                var str = '<div >' +
+                    '<div class="layui-inline">' +
+                    '<input type="number" name="commission[]" class="form-control post-params" placeholder="佣金">' +
+                    '</div>' +
+                    '<div class="layui-inline">' +
+                    '<button type="button" class="layui-btn layui-btn-danger layui-btn-sm removeclass" style="margin-left: 5px;"> <i class="layui-icon">&#xe67e;</i> </button>' +
+                    '</div>' +
+                    '</div>';
+                $("#data_value00001").append(str);
+                form.render('select');
+            });
+        }
+    )
+</script>
+
+

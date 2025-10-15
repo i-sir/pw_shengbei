@@ -1,0 +1,280 @@
+<include file="public@header"/></head>
+<body xmlns="http://www.w3.org/1999/html">
+<div class="wrap js-check-wrap">
+    <ul class="nav nav-tabs">
+        <li class="active"><a href="{:url('index',['params'=>$params])}">陪玩管理</a></li>
+        <li><a href="{:url('add',['params'=>$params])}">添加</a></li>
+    </ul>
+
+    <form class="well form-inline margin-top-20 layui-form ajax-form w-form-search" method="get" autocomplete="off">
+        关键字：
+        <div class="form-group layui-form">
+            <div class="layui-form-item" style="margin-bottom: 0 !important;">
+                <div class="col-md-12">
+                    <div class="layui-inline">
+                        <input type="text" class="form-control" name="keyword" style="width: 180px;"
+                               value="{:input('request.keyword/s','')}" placeholder="请输关键字搜索">
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <button type="submit" class="layui-btn" style="margin-left: 10px">搜索</button>
+        <a type="button" class="layui-btn layui-bg-blue ajax-export" href="javascript:;">导出</a>
+        <a class="layui-btn layui-bg-red" href="{:url('index',['params'=>$params])}">清空</a>
+
+        <p style="color: red;font-size: 20px;margin-top: 1%;">
+            总余额:{$total_balance}
+        </p>
+
+        <input type="hidden" name="is_export" class="is_export" value="0">
+    </form>
+
+
+    <form class="js-ajax-form" method="post" autocomplete="off">
+
+        <br>
+        <div class="table-actions">
+            <button class="layui-btn layui-btn-primary layui-border-green layui-btn-xs js-ajax-submit" type="submit"
+                    data-action="{:url('list_order_post')}">
+                排序
+            </button>
+        </div>
+
+
+        <table class="table table-hover table-bordered">
+            <thead>
+            <tr>
+                <th style="width: 60px">排序</th>
+
+                <th style="width: 60px">ID</th>
+                <th style="width: 60px">陪玩信息</th>
+                <th style="width: 60px">手机号</th>
+                <th style="width: 60px">余额</th>
+                <th style="width: 60px">保证金</th>
+                <th style="width: 60px">性别</th>
+                <th style="width: 60px">等级</th>
+                <th style="width: 60px">标签</th>
+                <!--                <th style="width: 60px">首页推荐</th>-->
+                <th style="width: 60px">禁用</th>
+                <!--                <th style="width: 60px">个人</th>-->
+                <!--                <th style="width: 60px">团队</th>-->
+                <th style="width: 60px">注册时间</th>
+                <th style="width: 80px">操作</th>
+            </tr>
+            </thead>
+            <tbody>
+            <foreach name="list" item="vo">
+                <tr>
+                    <td>
+                        <input type="text" class="input input-order valid" name="list_order[{$vo.id}]"
+                               value="{$vo.list_order}">
+                    </td>
+                    <td>{$vo.id}</td>
+                    <td>
+                        <div>
+                            <if condition="!empty($vo['avatar'])">
+                                <a href="javascript:imagePreviewDialog('{:cmf_get_image_preview_url($vo.avatar)}');">
+                                    <img src="{:cmf_get_image_preview_url($vo.avatar)}"
+                                         style="width:30px;height:30px;border-radius:30px;">
+                                </a>
+                            </if>
+                            <span ondblclick="copyContent('{$vo.openid}')">{$vo.nickname}</span>
+                        </div>
+                    </td>
+                    <td>{$vo.phone}</td>
+                    <td>{$vo.balance}</td>
+                    <td>{$vo.point}</td>
+                    <td>{$vo.gender}</td>
+                    <td>{$vo.level_name}</td>
+                    <td>{$vo.tag}</td>
+                    <!--                    <td>-->
+                    <!--                        <div class="layui-form">-->
+                    <!--                            <input type="checkbox" lay-skin="switch" lay-text="是|否" lay-filter="is_index"-->
+                    <!--                                   name="is_index"-->
+                    <!--                                   value="{$vo.id}"-->
+                    <!--                            <if condition="$vo.is_index == 1">checked</if>-->
+                    <!--                            >-->
+                    <!--                        </div>-->
+                    <!--                    </td>-->
+                    <td>
+                        <div class="layui-form">
+                            <input type="checkbox" lay-skin="switch" lay-text="是|否" lay-filter="is_block"
+                                   name="is_block"
+                                   value="{$vo.id}"
+                            <if condition="$vo.is_block == 1">checked</if>
+                            >
+                        </div>
+                    </td>
+                    <!--                    <td>-->
+                    <!--                        <div class="layui-form">-->
+                    <!--                            <input type="checkbox" lay-skin="switch" lay-text="是|否" lay-filter="is_personal"-->
+                    <!--                                   name="is_personal"-->
+                    <!--                                   value="{$vo.id}"-->
+                    <!--                            <if condition="$vo.is_personal == 1">checked</if>-->
+                    <!--                            >-->
+                    <!--                        </div>-->
+                    <!--                    </td>-->
+                    <!--                    <td>-->
+                    <!--                        <div class="layui-form">-->
+                    <!--                            <input type="checkbox" lay-skin="switch" lay-text="是|否" lay-filter="is_team"-->
+                    <!--                                   name="is_team"-->
+                    <!--                                   value="{$vo.id}"-->
+                    <!--                            <if condition="$vo.is_team == 1">checked</if>-->
+                    <!--                            >-->
+                    <!--                        </div>-->
+                    <!--                    </td>-->
+                    <td>{$vo.create_time|date='Y-m-d H:i:s'}</td>
+
+                    <td>
+                        <a class="layui-btn layui-btn-primary layui-border-blue layui-btn-xs"
+                           href="javascript:parent.openIframeLayer('{:url('operate',array('id'=>$vo.id))}','操作',{ area: ['45%', '65%'],move:'.layui-layer-title'});"
+                        >操作</a>
+
+
+                        <a class="layui-btn layui-btn-primary layui-border-orange layui-btn-xs"
+                           href="javascript:parent.openIframeLayer('{:url('log',array('user_id'=>$vo.id))}','记录',{ area: ['65%', '85%'],move:'.layui-layer-title'});"
+                        >记录</a>
+
+                        <a class="layui-btn layui-btn-primary layui-border-blue layui-btn-xs"
+                           href="javascript:parent.openIframeLayer('{:url('evaluate',['pid'=>$vo.id])}','评价管理',{ area: ['65%', '85%'],move:'.layui-layer-title'});"
+                        >评价管理</a>
+
+                        <a class="layui-btn layui-btn-primary layui-border-blue layui-btn-xs"
+                           href="javascript:parent.openIframeLayer('{:url('class',['id'=>$vo.id])}','关联游戏分类',{ area: ['65%', '85%'],move:'.layui-layer-title'});"
+                        >关联游戏分类</a>
+
+                        <a class="layui-btn layui-btn-primary layui-border-green layui-btn-xs"
+                           href="{:url('edit',array('id'=>$vo['id'],'params'=>$params))}">
+                            编辑
+                        </a>
+
+
+                    </td>
+                </tr>
+            </foreach>
+            </tbody>
+        </table>
+    </form>
+
+    <div class="pagination">{$page|default=''}</div>
+</div>
+<script src="__STATIC__/js/admin.js"></script>
+</body>
+</html>
+
+
+<!--导出,筛选查询-->
+<script>
+    //导出
+    $(".ajax-export").click(function () {
+        //alert("正在开发中...");
+        $(".is_export").val(1);
+        $(".ajax-form").submit();
+        $(".is_export").val(0);
+        return false;
+    });
+
+    //搜索
+    $(".bt_search").click(function () {
+        $(".w-form-search").removeAttr('action');
+        $(".w-form-search").attr('action', "/index.html");
+        $(".w-form-search").submit();
+    });
+</script>
+
+
+<script>
+    layui.use(['layer', 'form', 'slider'], function () {
+        var layer = layui.layer, form = layui.form;
+
+        form.on('switch(is_index)', function (data) {
+            var id = data.value;
+            var is_index = 2;//未选中状态值
+            if (this.checked) {
+                is_index = 1;//选中状态值
+            }
+            $.ajax({
+                url: "{:url('batch_post')}",
+                type: "POST",
+                data: {id: id, is_index: is_index},
+                success: function (res) {
+                    //console.log(res);
+                    if (res.code == 1) {
+                        layer.msg(res.msg, {icon: 1});
+                    } else {
+                        layer.msg(res.msg, {icon: 7});
+                    }
+                }
+            });
+        });
+
+        form.on('switch(is_block)', function (data) {
+            var id = data.value;
+            var is_block = 2;//未选中状态值
+            if (this.checked) {
+                is_block = 1;//选中状态值
+            }
+            $.ajax({
+                url: "{:url('batch_post')}",
+                type: "POST",
+                data: {id: id, is_block: is_block},
+                success: function (res) {
+                    //console.log(res);
+                    if (res.code == 1) {
+                        layer.msg(res.msg, {icon: 1});
+                    } else {
+                        layer.msg(res.msg, {icon: 7});
+                    }
+                }
+            });
+        });
+
+
+        form.on('switch(is_personal)', function (data) {
+            var id = data.value;
+            var is_personal = 2;//未选中状态值
+            if (this.checked) {
+                is_personal = 1;//选中状态值
+            }
+            $.ajax({
+                url: "{:url('batch_post')}",
+                type: "POST",
+                data: {id: id, is_personal: is_personal},
+                success: function (res) {
+                    //console.log(res);
+                    if (res.code == 1) {
+                        layer.msg(res.msg, {icon: 1});
+                    } else {
+                        layer.msg(res.msg, {icon: 7});
+                    }
+                }
+            });
+        });
+
+
+        form.on('switch(is_team)', function (data) {
+            var id = data.value;
+            var is_team = 2;//未选中状态值
+            if (this.checked) {
+                is_team = 1;//选中状态值
+            }
+            $.ajax({
+                url: "{:url('batch_post')}",
+                type: "POST",
+                data: {id: id, is_team: is_team},
+                success: function (res) {
+                    //console.log(res);
+                    if (res.code == 1) {
+                        layer.msg(res.msg, {icon: 1});
+                    } else {
+                        layer.msg(res.msg, {icon: 7});
+                    }
+                }
+            });
+        });
+
+
+    });
+</script>
+

@@ -1,0 +1,163 @@
+<include file="public@header"/></head>
+<body xmlns="http://www.w3.org/1999/html">
+<div class="wrap js-check-wrap">
+    <ul class="nav nav-tabs">
+        <li class="active"><a href="{:url('index',['params'=>$params])}">统计管理</a></li>
+    </ul>
+
+    <form class="well form-inline margin-top-20 layui-form ajax-form w-form-search" method="get" autocomplete="off">
+        开始时间：
+        <div class="form-group">
+            <div class="layui-form-item">
+                <div class="col-md-6 col-sm-10"
+                     style="z-index: 2000;display: flex;margin-top: 10px;width: 180px;margin-right: 50px">
+                    <input type="text" class="form-control post-params js-date" name="beginTime"
+                           value="{$beginTime}" placeholder="请输入开始时间">
+                </div>
+            </div>
+        </div>
+
+
+        结束时间：
+        <div class="form-group">
+            <div class="layui-form-item">
+                <div class="col-md-6 col-sm-10" style="z-index: 2000;display: flex;margin-top: 10px;width: 150px;">
+                    <input type="text" class="form-control post-params js-date" name="endTime"
+                           value="{$endTime}" placeholder="请输入结束时间">
+                </div>
+            </div>
+        </div>
+
+
+        <button type="submit" class="layui-btn" style="margin-left: 80px">搜索</button>
+        <a class="layui-btn layui-bg-red" href="{:url('index',['params'=>$params])}">清空</a>
+
+    </form>
+
+    <form class="js-ajax-form" method="post" autocomplete="off">
+
+        <br>
+        <div class="table-actions">
+
+
+        </div>
+
+
+        <div class="layui-row layui-col-space15">
+            <div class="layui-col-xs4">
+                <div class="layui-row layui-col-space15">
+                    <div class="layui-col-xs6">
+                        <div class="panel panel-default" style="margin-bottom: 0;">
+                            <div class="panel-body text-center">
+                                <i style="font-size: 24px; color: #69C0FF;">{$member_total|default='0'}</i>
+                                <div class="margin-top-10">新增用户</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="layui-col-xs6">
+                        <div class="panel panel-default" style="margin-bottom: 0;">
+                            <div class="panel-body text-center" style="margin-bottom: 0;">
+                                <i style="font-size: 24px; color: #5CDBD3;">{$order_total|default='0'}</i>
+                                <div class="margin-top-10">订单数</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="layui-col-xs4">
+                <div class="layui-row layui-col-space15">
+                    <div class="layui-col-xs6">
+                        <div class="panel panel-default" style="margin-bottom: 0;">
+                            <div class="panel-body text-center">
+                                <i style="font-size: 24px; color: #FF9C6E;">{$order_amount|default='0'}</i>
+                                <div class="margin-top-10">订单金额</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="layui-col-xs6">
+                        <div class="panel panel-default" style="margin-bottom: 0;">
+                            <div class="panel-body text-center">
+                                <i style="font-size: 24px; color: #B37FEB;">{$order_all|default='0'}</i>
+                                <div class="margin-top-10">总订单数</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="layui-col-xs4">
+                <div class="layui-row layui-col-space15">
+                    <div class="layui-col-xs6">
+                        <div class="panel panel-default" style="margin-bottom: 0;">
+                            <div class="panel-body text-center">
+                                <i style="font-size: 24px; color: #95DE64;">{$play_withdrawal_amount|default='0'}</i>
+                                <div class="margin-top-10">陪玩总提现金额(已打款)</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="layui-col-xs6">
+                        <div class="panel panel-default" style="margin-bottom: 0;">
+                            <div class="panel-body text-center">
+                                <i style="font-size: 24px; color: #FFC069;">{$user_withdrawal_amount|default='0'}</i>
+                                <div class="margin-top-10">用户总提现金额(已打款)</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="layui-col-xs4">
+                <div class="layui-row layui-col-space15">
+                    <div class="layui-col-xs6">
+                        <div class="panel panel-default" style="margin-bottom: 0;">
+                            <div class="panel-body text-center">
+                                <i style="font-size: 24px; color: #95DE64;">{$reward_amount|default='0'}</i>
+                                <div class="margin-top-10">总打赏金额</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="layui-col-xs6">
+                        <div class="panel panel-default" style="margin-bottom: 0;">
+                            <div class="panel-body text-center">
+                                <i style="font-size: 24px; color: #dd0000;">{$order_amount_finish|default='0'}</i>
+                                <div class="margin-top-10">总完成订单金额</div>
+                            </div>
+                        </div>
+                    </div>
+
+
+                </div>
+            </div>
+
+
+
+        </div>
+
+    </form>
+</div>
+<script src="__STATIC__/js/admin.js"></script>
+</body>
+</html>
+
+
+<!--导出,筛选查询-->
+<script>
+    //导出
+    $(".ajax-export").click(function () {
+        //alert("正在开发中...");
+        $(".is_export").val(1);
+        $(".ajax-form").submit();
+        $(".is_export").val(0);
+        return false;
+    });
+
+    //搜索
+    $(".bt_search").click(function () {
+        $(".w-form-search").removeAttr('action');
+        $(".w-form-search").attr('action', "/index.html");
+        $(".w-form-search").submit();
+    });
+</script>
+

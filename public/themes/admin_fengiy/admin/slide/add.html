@@ -1,0 +1,32 @@
+<include file="public@header"/>
+</head>
+<body>
+<div class="wrap js-check-wrap">
+    <ul class="nav nav-tabs">
+        <li><a href="{:url('slide/index')}">幻灯片列表</a></li>
+        <li class="active"><a href="{:url('slide/add')}">添加幻灯片</a></li>
+    </ul>
+    <form method="post" class="form-horizontal js-ajax-form margin-top-20 layui-form" autocomplete="off" action="{:url('slide/addPost')}">
+        <div class="form-group">
+            <label for="input-name" class="col-sm-2 control-label">名称</label>
+            <div class="layui-input-block col-md-6 col-sm-10">
+                <input type="text" class="form-control post-params" id="input-name" name="name">
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="input-remark" class="col-sm-2 control-label">{:lang('DESCRIPTION')}</label>
+            <div class="layui-input-block col-md-6 col-sm-10">
+                <textarea class="form-control post-params" id="input-remark" name="remark"></textarea>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-sm-offset-2 col-sm-10">
+                <button type="submit" class="layui-btn js-ajax-submit" id="save">保存</button>
+                <a class="layui-btn layui-btn-primary" href="javascript:history.back(-1);">返回</a>
+            </div>
+        </div>
+    </form>
+</div>
+<script src="__STATIC__/js/admin.js"></script>
+</body>
+</html>

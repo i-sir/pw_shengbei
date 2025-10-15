@@ -1,0 +1,941 @@
+<include file="public@header"/>
+<link href="__TMPL__/public/assets/css/common.css" rel="stylesheet">
+<style>
+    .layui-tab-content {
+        margin-top: 15px;
+    }
+</style>
+</head>
+<body>
+<div class="wrap js-check-wrap">
+    <ul class="nav nav-tabs">
+        <li class="active"><a href="{:url('index',array('params'=>$params))}">订单列表</a></li>
+    </ul>
+
+    <form class="well form-inline margin-top-20 layui-form ajax-form w-form-search" method="get" autocomplete="off"
+          action="{:url('index')}">
+        <div>
+            用户ID:
+            <input type="text" class="form-control" name="user_id" style="width: 200px;"
+                   value="{:input('user_id/s','')}" placeholder="请输入用户ID">
+            订单号:
+            <input type="text" class="form-control" name="order_num" style="width: 200px;"
+                   value="{:input('order_num/s','')}" placeholder="请输入订单号">
+            商品名称:
+            <input type="text" class="form-control" name="goods_name" style="width: 240px;"
+                   value="{:input('goods_name/s','')}" placeholder="请输入商品名称">
+            规格名称:
+            <input type="text" class="form-control" name="sku_name" style="width: 240px;"
+                   value="{:input('sku_name/s','')}" placeholder="请输入规格名称">
+
+            支付方式：
+            <div class="form-group">
+                <div class="layui-form-item">
+                    <div class="col-md-6 col-sm-10" style="z-index: 2000;display: flex;margin-top: 10px;width: 180px;">
+                        <select name="pay_type" lay-search>
+                            <option value=""
+                            <if condition="input('request.pay_type/s','') eq '' ">selected</if>
+                            >暂不选择</option>
+                            <option value="1"
+                            <if condition="input('request.pay_type/s','') eq 1 ">selected</if>
+                            >微信</option>
+                            <option value="2"
+                            <if condition="input('request.pay_type/s','') eq 2 ">selected</if>
+                            >余额</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+
+            <br>
+            陪玩：
+            <div class="form-group">
+                <div class="layui-form-item">
+                    <div class="col-md-6 col-sm-10" style="z-index: 2000;display: flex;margin-top: 10px;width: 280px;">
+                        <select name="play_user_id" lay-search>
+                            <option value=""
+                            <if condition="input('request.play_user_id/s','') eq '' ">selected</if>
+                            >暂不选择</option>
+
+                            <foreach name="play_list" key="key" item="vo">
+                                <option value="{$vo.id}"
+                                <if condition="input('request.play_user_id/s','') eq $vo.id ">selected</if>
+                                >(ID:{$vo.id})-{$vo.nickname}-{$vo.phone}</option>
+                            </foreach>
+
+                        </select>
+                    </div>
+                </div>
+            </div>
+
+            分类:
+            <div class="form-group">
+                <div class="layui-form-item">
+                    <div class="col-md-6 col-sm-10" style="display: flex;margin-top: 10px;width: 180px;">
+                        <select name="class_id" lay-search lay-filter="classList">
+                            <option value=""
+                            <if condition="$class_id eq '' ">selected</if>
+                            >暂不选择</option>
+                            <foreach name="class_list" key="key" item="vo">
+                                <option value="{$vo.id}"
+                                <if condition="$class_id eq $vo.id ">selected</if>
+                                > {$vo.name}</option>
+                            </foreach>
+                        </select>
+                        <input type="hidden" id="one_id" value="{$class_id}">
+                    </div>
+                    <div class="col-md-6 col-sm-10" style="display: flex;margin-top: 10px;width: 180px;">
+                        <select class="two_id" name="class_two_id" lay-search lay-filter="classTwoList">
+                            <option value=""
+                            <if condition="$class_two_id eq '' ">selected</if>
+                            >暂不选择</option>
+                        </select>
+                        <input type="hidden" id="two_id" value="{$class_two_id}">
+                    </div>
+                </div>
+
+                <!--后台代码-->
+                <!--
+
+
+                //获取一级分类
+                $ClassInit  = new \init\ClassInit();//分类管理    (ps:InitController)
+                $map = [];
+                $map[] = ['pid','=',0];
+                $this->assign('class_list', $ClassInit->get_list($map));
+
+
+
+                //获取二级分类列表
+                public function get_class_list()
+                {
+                    $params = $this->request->param();
+                    //分类
+                    $MemberKnowledgeModel = new \initmodel\MemberKnowledgeModel(); //知识库   (ps:InitModel)
+                    $MemberKnowledgeClassInit  = new \init\MemberKnowledgeClassInit();//分类管理    (ps:InitController)
+                    $MemberKnowledgeClassModel = new \initmodel\MemberKnowledgeClassModel(); //分类管理   (ps:InitModel)
+
+                    //查询二级条件.
+                    $map = [];
+                    if ($params['one_id']) $map[] = ['pid', '=', $params['one_id']];//查询二级列表
+                    if (empty(count($map))) $this->success('请求成功');
+
+                    //二级列表
+                    $two_list = $MemberKnowledgeClassInit->get_list($map);
+                    //查询数据,方便展示二级下拉框选中值
+                    if ($params['item_id']) {
+                        $item_info = $MemberKnowledgeModel->where(['id' => $params['item_id']])->find();
+                        if ($item_info) {
+                            foreach ($two_list as $k => &$v) {
+                                $v['selected'] = false;
+                                //这里的branch_id 更改为二级,三级id
+                                if ($params['one_id'] && $item_info['class_two_id'] == $v['id']) $v['selected'] = 'selected';//选中
+                            }
+                        }
+                    }
+                    $this->success('请求成功', '', $two_list);
+                }
+
+
+
+                /**
+                 * 获取二分类,回显使用
+                 */
+                public function get_class_two_list()
+                 {
+                 $TradeWarehouseInit = new \init\TradeWarehouseInit();//仓位管理    (ps:InitController)
+
+                 $params = $this->request->param();
+                 $map    = [];
+                 $map[]  = ['pid', '=', $params['one_id']];
+
+                 $result = $TradeWarehouseInit->get_list($map);
+
+                 foreach ($result as $k => &$v) {
+                 if ($v['id'] == $params['two_id']) $v['selected'] = 'selected';
+                 }
+
+                 $this->success('成功', '', $result);
+                 }
+                -->
+
+
+            </div>
+
+
+            下单时间:
+            <input type="text" class="form-control" name="order_date" id="laydate-range-datetime" style="width: 260px;"
+                   placeholder="请选择下单时间段" value="{$order_date}">
+
+
+            <button type="submit" class="layui-btn" style="margin-left: 10px">搜索</button>
+            <a type="button" class="layui-btn layui-bg-blue ajax-export" href="javascript:;">导出</a>
+            <a class="layui-btn layui-bg-red" href="{:url('index',array('params'=>$params))}">清空</a>
+            <input type="hidden" name="is_export" class="is_export" value="0">
+
+            <br>
+            <br>
+            <p style="color: red;font-size: 16px;">总订单金额:{$total_amount}</p>
+        </div>
+
+    </form>
+
+
+    <div class="layui-tab layui-tab-brief" lay-filter="LAY-order-tab">
+        <ul class="layui-tab-title order-tab">
+            <li
+            <if condition="!$status">class="layui-this"</if>
+            >
+            <a href="{:url('index',array('class_id'=>$class_id,'class_two_id'=>$class_two_id,'user_id'=>$user_id,'order_num'=>$order_num,'play_user_id'=>$play_user_id,'pay_type'=>$pay_type,'goods_name'=>$goods_name,'order_date'=>$order_date))}"
+               style='text-decoration:none;color: inherit'>
+                全部
+                <span class="layui-badge layui-bg-orange">{$total}</span>
+            </a>
+            </li>
+            <foreach name="count" key="key" item="vo">
+                <li
+                <if condition="$vo.key == $status">class="layui-this"</if>
+                >
+                <a href="{:url('index',array('status'=>$vo.key,'class_id'=>$class_id,'class_two_id'=>$class_two_id,'user_id'=>$user_id,'order_num'=>$order_num,'play_user_id'=>$play_user_id,'pay_type'=>$pay_type,'goods_name'=>$goods_name,'order_date'=>$order_date))}"
+                   style='text-decoration:none;color: inherit'>
+                    {$vo.name}
+                    <span class="layui-badge layui-bg-orange">{$vo.count}</span>
+                </a>
+                </li>
+            </foreach>
+        </ul>
+        <div class="layui-tab-content table-responsive">
+            <table class="table order-table">
+                <thead>
+                <tr class="tab-header">
+                    <th width="60%">
+                        <table class="th-table">
+                            <tr>
+                                <th width="5%">ID</th>
+                                <th width="60%">商品信息</th>
+                                <th width="10%">单价</th>
+                            </tr>
+                        </table>
+                    </th>
+                    <th width="10%">实付款</th>
+                    <th width="10%">状态</th>
+                    <th width="10%">操作</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr class="tr-pipe"></tr>
+                </tbody>
+
+                <foreach name="list" item="vo">
+                    <tbody>
+                    <tr class="tr-header">
+                        <td colspan="5">
+                            <span>(ID:{$vo.id})</span>
+                            <span style="margin-left:1%;"><b>{$vo.create_time|date="Y-m-d H:i:s"}</b></span>
+                            <span class="order_num" style="margin-left: 1%;"
+                                  onclick="copyContent('{$vo.order_num}')">
+                                <cite>订单号：</cite>{$vo.order_num}
+                            </span>
+
+                            <span style="margin-left: 1%;" onclick="copyContent('{$vo.pay_num}')">
+                                  <cite>支付单号：</cite>{$vo.pay_num}
+                            </span>
+
+
+                            <span style="margin-left: 1%;">
+                             用户:
+                             <a href="javascript:imagePreviewDialog('{:cmf_get_image_preview_url($vo.user_info.avatar)}');">
+                                <img class="layui-circle" src="{$vo.user_info.avatar}" width="20"
+                                     height="20">
+                            </a>
+                            </span>
+                            <span>
+                                (ID:{$vo.user_id})
+                            </span>
+                            <span ondblclick="copyContent('{$vo.user_info.openid}')">
+                                {$vo.user_info.nickname}
+                            </span>
+
+                            <if condition="!empty($vo.remark)">
+                                <i class="layui-icon layui-icon-reply-fill cursor" style="color: #FF5722"
+                                   data-toggle="tooltip"
+                                   title="{$vo.remark|default=''}"></i>
+                            </if>
+
+
+                            <span class="layui-btn layui-btn-primary layui-border-green layui-btn-xs"
+                                  style="margin-left: 20px;">
+                                {$vo.order_type_text}
+                               <if condition="$vo.order_type==2">
+                               ({$vo.play_type_text})
+                               </if>
+                            </span>
+
+                            <if condition="$vo.play_user_id">
+                                <span class="layui-btn layui-btn-primary layui-border-purple layui-btn-xs">
+                                    {$vo.receive_type_text}
+                                </span>
+                            </if>
+
+                        </td>
+                    </tr>
+                    <tr class="tr-goods">
+                        <td>
+                            <table class="goods-item">
+                                <tr>
+                                    <!--<td width="5%" class="text-center">{$vo.id}</td>-->
+                                    <!--id隐藏了,这里为60%-->
+                                    <td width="60%">
+                                        <div class="img">
+                                            <a href="javascript:imagePreviewDialog('{:cmf_get_image_preview_url($vo.image)}');">
+                                                <img class="img-rounded"
+                                                     src="{:cmf_get_image_preview_url($vo.image)}" alt=""
+                                                     width="70" height="70">
+                                            </a>
+                                        </div>
+                                        <div class="title">
+                                            {$vo.name}
+                                        </div>
+                                        <if condition="$vo.sku_name">
+                                            <span class="tags">{$vo.sku_name}</span>
+                                        </if>
+                                    </td>
+                                    <td width="10%" class="text-center">&yen; {$vo.goods_price}</td>
+                                </tr>
+                            </table>
+                        </td>
+
+
+                        <td class="text-center">
+                            <div class="price">&yen; {$vo.amount}</div>
+                            <span class="layui-btn layui-btn-primary layui-border-purple layui-btn-xs">{$vo.pay_type_text}</span>
+                        </td>
+
+                        <td class="text-center">
+                            <div class="status">
+                                <span class="layui-btn-xs layui-btn layui-btn-primary layui-border-{$vo.status_color}">{$vo.status_name}</span>
+                            </div>
+                        </td>
+
+                        <td class="text-center">
+                            <div class="operate">
+                                <!--                                <a class="layui-bg-blue-light layui-circle op-btn"-->
+                                <!--                                   lay-on="order-tips"-->
+                                <!--                                   data-toggle="tooltip"-->
+                                <!--                                   data-id="{$vo.id}"-->
+                                <!--                                   title="{$vo.admin_remark?'修改备注':'添加备注'}"-->
+                                <!--                                   data-notes="{$vo.admin_remark}">-->
+                                <!--                                    <i class="layui-icon layui-icon-edit"></i>-->
+                                <!--                                </a>-->
+
+                                <if condition="$vo.status==20||$vo.status==30||$vo.status==40">
+                                    <a class="layui-bg-gray-light layui-circle op-btn"
+                                       href="javascript:parent.openIframeLayer('{:url('distribution',['id'=>$vo.id,'show_status'=>60,'user_id'=>$user_id,'order_num'=>$order_num,'play_user_id'=>$play_user_id,'pay_type'=>$pay_type,'goods_name'=>$goods_name,'order_date'=>$order_date])}','拒绝',{area: ['80%', '80%']});"
+                                       data-toggle="tooltip" title="派单">
+                                        <i class="layui-icon layui-icon-release"></i>
+                                    </a>
+                                </if>
+
+
+                                <if condition="$vo.status==2">
+                                    <a class="layui-bg-gray-light layui-circle op-btn"
+                                       data-toggle="tooltip"
+                                       lay-on="send-confirm"
+                                       data-id="{$vo.id}"
+                                       title="确认通过？">
+                                        <i class="layui-icon layui-icon-ok"></i>
+                                    </a>
+                                </if>
+
+                                <if condition="!in_array($vo.status, [1,50,10,15])">
+                                    <a class="layui-bg-gray-light layui-circle op-btn"
+                                       data-toggle="tooltip"
+                                       lay-on="refund_pass"
+                                       data-id="{$vo.id}"
+                                       title="确认通过退款？">
+                                        <i class="layui-icon layui-icon-face-surprised"></i>
+                                    </a>
+                                </if>
+
+                                <if condition="$vo.status==60">
+                                    <a class="layui-bg-gray-light layui-circle op-btn"
+                                       data-toggle="tooltip"
+                                       lay-on="play-confirm"
+                                       data-id="{$vo.id}"
+                                       title="确认通过？">
+                                        <i class="layui-icon layui-icon-ok"></i>
+                                    </a>
+
+                                    <!--                                    <a class="layui-bg-gray-light layui-circle op-btn"-->
+                                    <!--                                       data-toggle="tooltip"-->
+                                    <!--                                       lay-on="play-confirm2"-->
+                                    <!--                                       data-id="{$vo.id}"-->
+                                    <!--                                       title="确认拒绝？">-->
+                                    <!--                                        <i class="layui-icon layui-icon-close"></i>-->
+                                    <!--                                    </a>-->
+
+                                    <a class="layui-bg-gray-light layui-circle op-btn"
+                                       href="javascript:parent.openIframeLayer('{:url('refuse',['id'=>$vo.id,'show_status'=>60,'user_id'=>$user_id,'order_num'=>$order_num,'play_user_id'=>$play_user_id,'pay_type'=>$pay_type,'goods_name'=>$goods_name,'order_date'=>$order_date])}','拒绝',{area: ['80%', '80%']});"
+                                       data-toggle="tooltip" title="拒绝">
+                                        <i class="layui-icon layui-icon-close"></i>
+                                    </a>
+                                </if>
+
+
+                                <a class="layui-bg-gray-light layui-circle op-btn"
+                                   href="javascript:parent.openIframeLayer('{:url('details',['id'=>$vo.id])}','订单详情',{area: ['80%', '80%']});"
+                                   data-toggle="tooltip" title="订单详情">
+                                    <i class="layui-icon layui-icon-more"></i>
+                                </a>
+
+
+                                <if condition="$vo.status!=1 && $vo.status!=10 && $vo.status!=15">
+                                    <a class="layui-bg-gray-light layui-circle op-btn"
+                                       data-toggle="tooltip"
+                                       lay-on="cancel_order"
+                                       data-id="{$vo.id}"
+                                       title="确认取消订单？">
+                                        <i class="layui-icon layui-icon-clear"></i>
+                                    </a>
+                                </if>
+
+                            </div>
+                        </td>
+
+                    </tr>
+                    <tr class="tr-footer">
+                        <td colspan="5">
+                            <div style="display: flex;justify-content: space-between;width: 100%;align-items: center;">
+
+                                <div>
+                                    <if condition="$vo.paly_name">
+                                        <span><cite>游戏名：</cite>{$vo.paly_name}</span>
+                                    </if>
+                                    <span style="margin: 0 5px;"><cite>编号：</cite>{$vo.code}</span>
+                                    <span><cite>区服：</cite>{$vo.area}</span>
+                                    <span><cite>微信号：</cite>{$vo.wx}</span>
+                                    <notempty name="$vo.admin_remark">
+                                        <div class="layui-font-orange" style="margin-top: 5px;"><cite>管理员备注：</cite>{$vo.admin_remark}
+                                        </div>
+                                    </notempty>
+                                </div>
+
+                                <div>
+                                    <notempty name="$vo.draw_id">
+                                        <div>
+                                            <span><cite>抽奖结果：</cite>
+                                                {$vo.draw_name}
+                                            </span>
+                                        </div>
+                                    </notempty>
+
+                                </div>
+
+
+                            </div>
+                        </td>
+                    </tr>
+                    <tr class="tr-pipe"></tr>
+                    </tbody>
+                </foreach>
+            </table>
+        </div>
+    </div>
+    <div class="pagination">{$page|default=''}</div>
+</div>
+</body>
+</html>
+
+<script src="__STATIC__/js/admin.js"></script>
+
+<!--二级分类筛选-->
+<script>
+    //加载页面自动执行
+    layui.use(['form', 'element'], function () {
+        var form = layui.form,
+            element = layui.element;
+
+        var one_id = $("#one_id").val();//一级
+        var two_id = $("#two_id").val();//二级
+
+        //如果一级选中,查二级分类
+        if (one_id) {
+            $.ajax({
+                url: "{:url('get_class_two_list')}",
+                type: "GET",
+                data: {
+                    'one_id': one_id,
+                    'two_id': two_id,//二级默认值
+                },
+                success: function (res) {
+                    if (res.code == 1) {
+                        List = res.data;
+                        var tmp = '<option value="">请选择</option>';
+                        for (var i in List) {
+                            //tmp += '<option value="' + List[i].id + '"   "selected=' + List[i].selected + '">' + List[i].name + '</option>';
+                            tmp += '<option value="' + List[i].id + '"  ' + List[i].selected + '>' + List[i].name + '</option>';
+                        }
+                        $(".two_id").html(tmp);//赋值一级分类下拉选择
+                    }
+
+                    form.render('select');
+                }
+            });
+        }
+
+        //一级选中执行,查询二级列表
+        form.on('select(classList)', function (data) {
+            $.ajax({
+                url: "{:url('get_class_list')}",
+                type: "GET",
+                data: {
+                    'one_id': data.value
+                },
+                async: false,
+                success: function (res) {
+                    List = res.data;
+                    if (res.code == 1) {
+                        var tmp = '<option value="">暂不选择</option>';
+                        for (var i in List) {
+                            tmp += '<option value="' + List[i].id + '"  ' + List[i].selected + '>' + List[i].name + '</option>';
+                        }
+                        $(".two_id").html(tmp);//赋值二级分类下拉选择
+                    }
+                    form.render('select');
+                }
+            });
+        });
+
+    });
+</script>
+
+
+<!--导出-->
+<script>
+    //导出
+    $(".ajax-export").click(function () {
+        //alert("正在开发中...");
+        $(".is_export").val(1);
+        $(".ajax-form").submit();
+        $(".is_export").val(0);
+        return false;
+    });
+
+    //搜索
+    $(".bt_search").click(function () {
+        $(".w-form-search").removeAttr('action');
+        $(".w-form-search").attr('action', "/index.html");
+        $(".w-form-search").submit();
+    });
+</script>
+<script>
+    layui.use(function () {
+        var laydate = layui.laydate,
+            element = layui.element,
+            layer = layui.layer,
+            util = layui.util;
+
+        // 日期时间范围
+        laydate.render({
+            elem: '#laydate-range-datetime',
+            type: 'datetime',
+            range: true,
+            format: 'yyyy-MM-dd HH:mm'
+        });
+
+        // hash 地址定位
+        var hashName = 'tabid'; // hash 名称
+        var layid = location.hash.replace(new RegExp('^#' + hashName + '='), ''); // 获取 lay-id 值
+        let host1 = window.location.host;
+        let host2 = document.domain;
+        let host3 = location.hostname;
+        //console.log(host1, host2, host3)
+
+        // 初始切换
+        element.tabChange('LAY-order-tab', layid);
+        // 切换事件
+        element.on('tab(LAY-order-tab)', function (obj) {
+            location.hash = hashName + '=' + obj.index;
+            //console.log(location.hash)
+        });
+
+        //操作订单
+        util.on('lay-on', {
+            //管理员添加备注信息
+            'order-tips': function () {
+                var orderId = $(this).attr("data-id"); //当前订单ID
+                var value = $(this).attr("data-notes"); //当前订单备注信息
+                console.log(orderId)
+                console.log(value)
+
+
+                layer.prompt({title: '请输入备注信息', value, formType: 2}, function (value, index, elem) {
+                    if (value === '') return elem.focus();
+
+                    $.ajax({
+                        type: "POST",
+                        url: "setRemark",
+                        data: {id: orderId, admin_remark: value},
+                        success: function (res) {
+                            if (res.code == 1) {
+                                layer.close(index);
+                                layer.msg(res.msg, {icon: 1, time: 1000}, function () {
+                                    location.reload();
+                                });
+                            } else {
+                                layer.msg(res.msg, {icon: 7});
+                            }
+                        },
+                    })
+                });
+            },
+
+            //处理退款
+            'order-refund': function () {
+                var orderId = $(this).attr("data-id"); //当前订单ID
+
+                layer.confirm('确认要通过审核？', {
+                    btn: ['确定', '拒绝'] //按钮
+                }, function () {
+                    $.ajax({
+                        url: 'confirmCancel',
+                        type: "POST",
+                        data: {id: orderId, status: 1},
+                        success: function (res) {
+                            if (res.code == 1) {
+                                layer.msg(res.msg, {icon: 1, time: 1000}, function () {
+                                    location.reload();
+                                });
+                            } else {
+                                layer.msg(res.msg, {icon: 7});
+                            }
+                        }
+                    });
+                }, function () {
+                    layer.prompt({title: '请输入拒绝原因', formType: 2}, function (value, index, elem) {
+                        if (value === '') return elem.focus();
+
+                        $.ajax({
+                            url: 'confirmCancel',
+                            type: "POST",
+                            data: {id: orderId, status: 2, text: value},
+                            success: function (res) {
+                                if (res.code == 1) {
+                                    layer.close(index);
+                                    layer.msg(res.msg, {icon: 1, time: 1000}, function () {
+                                        location.reload();
+                                    });
+                                } else {
+                                    layer.msg(res.msg, {icon: 7});
+                                }
+                            }
+                        });
+                    });
+                });
+            },
+
+            //打印小票
+            'order-print': function () {
+                var orderId = $(this).attr("data-id"); //当前订单ID
+
+                layer.confirm('确认要打印小票？', {
+                    btn: ['确定', '取消'] //按钮
+                }, function () {
+                    layer.msg('打印小票操作', {icon: 1});
+                });
+            },
+
+            //核销订单
+            'order-verify': function () {
+                var orderId = $(this).attr("data-id"); //当前订单ID
+
+                layer.confirm('确认要核销此订单？', {
+                    btn: ['确定', '取消'] //按钮
+                }, function () {
+                    layer.msg('核销成功', {icon: 1});
+                });
+            },
+
+
+            //审核
+            'send-confirm': function () {
+                var orderId = $(this).attr("data-id"); //当前订单ID
+                console.log(orderId)
+                layer.confirm('确认通过审核？', {icon: 3}, function () {
+                    $.ajax({
+                        type: "POST",
+                        url: "edit_post_two",
+                        data: {id: orderId, status: 20},
+                        success: function (res) {
+                            if (res.code == 1) {
+                                layer.msg('操作成功!', {icon: 1, time: 1000}, function () {
+                                    location.reload();
+                                });
+                            } else {
+                                layer.msg(res.msg, {icon: 7});
+                            }
+                        },
+                    })
+                }, function () {
+                    layer.msg('已取消!', {icon: 2});
+                });
+            },
+
+
+            //取消订单
+            'cancel_order': function () {
+                var orderId = $(this).attr("data-id"); //当前订单ID
+                console.log(orderId)
+                layer.confirm('确认取消订单？', {icon: 3}, function () {
+                    $.ajax({
+                        type: "POST",
+                        url: "cancel_order",
+                        data: {id: orderId, status: 10},
+                        success: function (res) {
+                            if (res.code == 1) {
+                                layer.msg('操作成功!', {icon: 1, time: 1000}, function () {
+                                    location.reload();
+                                });
+                            } else {
+                                layer.msg(res.msg, {icon: 7});
+                            }
+                        },
+                    })
+                }, function () {
+                    layer.msg('已取消!', {icon: 2});
+                });
+            },
+
+
+            //退款通过
+            'refund_pass': function () {
+                var orderId = $(this).attr("data-id"); //当前订单ID
+                console.log(orderId)
+                layer.confirm('确认将订单退款？', {icon: 3}, function () {
+                    $.ajax({
+                        type: "POST",
+                        url: "refund_pass",
+                        data: {id: orderId, status: 10},
+                        success: function (res) {
+                            if (res.code == 1) {
+                                layer.msg('操作成功!', {icon: 1, time: 1000}, function () {
+                                    location.reload();
+                                });
+                            } else {
+                                layer.msg(res.msg, {icon: 7});
+                            }
+                        },
+                    })
+                }, function () {
+                    layer.msg('已取消!', {icon: 2});
+                });
+            },
+
+
+            //审核,陪玩通过
+            'play-confirm': function () {
+                var orderId = $(this).attr("data-id"); //当前订单ID
+                console.log(orderId)
+                layer.confirm('确认通过审核？', {icon: 3}, function () {
+                    $.ajax({
+                        type: "POST",
+                        url: "play_accomplish",
+                        data: {id: orderId, status: 50, show_status: 60},
+                        success: function (res) {
+                            if (res.code == 1) {
+                                layer.msg('操作成功!', {icon: 1, time: 1000}, function () {
+                                    location.reload();
+                                });
+                            } else {
+                                layer.msg(res.msg, {icon: 7});
+                            }
+                        },
+                    })
+                }, function () {
+                    layer.msg('已取消!', {icon: 2});
+                });
+            },
+
+            //审核,拒绝
+            'play-confirm2': function () {
+                var orderId = $(this).attr("data-id"); //当前订单ID
+                console.log(orderId)
+                layer.confirm('确认拒绝？', {icon: 3}, function () {
+                    $.ajax({
+                        type: "POST",
+                        url: "edit_post_two",
+                        data: {id: orderId, status: 62},
+                        success: function (res) {
+                            if (res.code == 1) {
+                                layer.msg('操作成功!', {icon: 1, time: 1000}, function () {
+                                    location.reload();
+                                });
+                            } else {
+                                layer.msg(res.msg, {icon: 7});
+                            }
+                        },
+                    })
+                }, function () {
+                    layer.msg('已取消!', {icon: 2});
+                });
+            },
+
+            //拒绝退款
+            'refund-reject': function () {
+                var orderId = $(this).attr("data-id"); //当前订单ID
+                console.log(orderId)
+                layer.confirm('确认拒绝退款？', {icon: 3}, function () {
+                    $.ajax({
+                        type: "POST",
+                        url: "reject_post",
+                        data: {id: orderId, status: 14},
+                        success: function (res) {
+                            if (res.code == 1) {
+                                layer.msg('操作成功!', {icon: 1, time: 1000}, function () {
+                                    location.reload();
+                                });
+                            } else {
+                                layer.msg(res.msg, {icon: 7});
+                            }
+                        },
+                    })
+                }, function () {
+                    layer.msg('已取消!', {icon: 2});
+                });
+            },
+
+
+            //同意退款
+            'pass-reject': function () {
+                var orderId = $(this).attr("data-id"); //当前订单ID
+                console.log(orderId)
+                layer.confirm('确认退款？', {icon: 3}, function () {
+                    $.ajax({
+                        type: "POST",
+                        url: "reject_post",
+                        data: {id: orderId, status: 16},
+                        success: function (res) {
+                            if (res.code == 1) {
+                                layer.msg('操作成功!', {icon: 1, time: 1000}, function () {
+                                    location.reload();
+                                });
+                            } else {
+                                layer.msg(res.msg, {icon: 7});
+                            }
+                        },
+                    })
+                }, function () {
+                    layer.msg('已取消!', {icon: 2});
+                });
+            },
+
+
+        })
+    })
+
+    function send(id) {
+        openIframeLayer(`{:url('order/send')}?id=${id}`, '订单发货', {
+            area: ['800px', '600px'],
+            btn: ['确定', '取消'],
+            yes: function (index, layero) {
+
+                var iframeWin = window[layero.find('iframe')[0]['name']];
+                var str = iframeWin.confirm();
+                var data = str['data'];
+
+                if (!str.data.exp_id) {
+                    layer.msg('请选择快递公司');
+                    return;
+                }
+
+                if (!str.data.exp_num) {
+                    layer.msg('请填写快递单号');
+                    return;
+                }
+                $.ajax({
+                    type: "POST",
+                    url: "send",
+                    data: data,
+                    success: function (res) {
+                        if (res.code == 1) {
+                            layer.close(index);
+                            layer.msg(res.msg, {icon: 1, time: 1000}, function () {
+                                location.reload();
+                            });
+                        } else {
+                            layer.msg(res.msg, {icon: 7});
+                        }
+                    },
+                })
+            }
+        });
+    }
+
+    //展示退款图片
+    function showPhotos(images, index) {
+        layer.photos({
+            photos: {
+                "title": "Photos Demo",
+                "start": index,
+                "data": images
+            }
+        });
+    }
+
+
+    //悬浮提示
+    $(function () {
+        var tips;
+        $('.order_num').on({
+            //延时1秒
+            mouseenter: function () {
+                var that = this;
+                tips = layer.tips("<span style='color:black;font-size: 15px;font-weight: 400;'>点击复制订单号</span>", that, {
+                    tips: [1, '#efefef'],
+                    time: 0,
+                    area: 'auto',
+                    maxWidth: 500
+                });
+            },
+
+            //去除
+            mouseleave: function () {
+                layer.close(tips);
+            }
+        });
+
+
+        $('.exp_num').on({
+            mouseenter: function () {
+                var that = this;
+                tips = layer.tips("<span style='color:black;font-size: 15px;font-weight: 400;'>点击复制快递单号</span>", that, {
+                    tips: [1, '#efefef'],
+                    time: 0,
+                    area: 'auto',
+                    maxWidth: 500
+                });
+            },
+            mouseleave: function () {
+                layer.close(tips);
+            }
+        });
+
+
+        $('.address').on({
+            mouseenter: function () {
+                var that = this;
+                tips = layer.tips("<span style='color:black;font-size: 15px;font-weight: 400;'>点击复制地址信息</span>", that, {
+                    tips: [1, '#efefef'],
+                    time: 0,
+                    area: 'auto',
+                    maxWidth: 500
+                });
+            },
+            mouseleave: function () {
+                layer.close(tips);
+            }
+        });
+
+    })
+
+</script>

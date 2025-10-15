@@ -1,0 +1,71 @@
+<div class="form-group">
+    <label class="col-sm-2 control-label">优惠券名称:</label>
+    <div class="layui-input-block col-md-6 col-sm-10">
+        <input type="text" name="name" class="form-control post-params item-left" value="{$name|default=''}">
+    </div>
+</div>
+<div class="form-group">
+    <label class="col-sm-2 control-label">满额:</label>
+    <div class="layui-input-block col-md-6 col-sm-10">
+        <input type="number" name="full_amount" class="form-control post-params item-left"
+               value="{$full_amount|default=''}">
+    </div>
+</div>
+<div class="form-group">
+    <label class="col-sm-2 control-label">面额:</label>
+    <div class="layui-input-block col-md-6 col-sm-10">
+        <input type="number" name="amount" class="form-control post-params item-left" value="{$amount|default=''}">
+    </div>
+</div>
+
+<div class="form-group">
+    <label class="col-sm-2 control-label">数量:</label>
+    <div class="layui-input-block col-md-6 col-sm-10">
+        <input type="number" name="count" class="form-control post-params item-left"
+               value="{$count|default=''}">
+    </div>
+</div>
+
+<!--限领数量:1-->
+<input type="hidden" name="limit" class="form-control post-params item-left" value="1">
+
+<div class="form-group">
+    <label class="col-sm-2 control-label">开始时间:</label>
+    <div class="layui-input-block col-md-6 col-sm-10">
+        <if condition='$start_time'>
+            <input type="text" name="start_time" required readonly="readonly"
+                   class="form-control post-params item-left"
+                   value="{$start_time|date='Y-m-d'}">
+            <else/>
+            <input type="text" name="start_time" required class="form-control post-params item-left js-date">
+        </if>
+    </div>
+</div>
+
+
+<div class="form-group">
+    <label class="col-sm-2 control-label">结束时间:</label>
+    <div class="layui-input-block col-md-6 col-sm-10">
+        <if condition='$end_time'>
+            <input type="text" name="end_time" required readonly="readonly" class="form-control post-params item-left "
+                   value="{$end_time|date='Y-m-d'}">
+            <else/>
+            <input type="text" name="end_time" required class="form-control post-params item-left js-date">
+        </if>
+    </div>
+</div>
+
+
+<div class="form-group">
+    <label class="col-sm-2 control-label">有效期:</label>
+    <div class="layui-input-block col-md-6 col-sm-10">
+        <if condition='$indate'>
+            <input type="text" name="indate" required readonly="readonly" class="form-control post-params item-left "
+                   value="{$indate|date='Y-m-d'}">
+            <else/>
+            <input type="text" name="indate" required class="form-control post-params item-left js-date">
+        </if>
+    </div>
+</div>
+
+

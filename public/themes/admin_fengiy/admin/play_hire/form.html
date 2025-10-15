@@ -1,0 +1,253 @@
+<div class="form-group">
+    <label class="col-sm-2 control-label">游戏名:</label>
+    <div class="layui-input-block col-md-6 col-sm-10" style="">
+        <if condition="!empty($play_id)">
+            <select class="form-control post-params" lay-search lay-filter="play_id" name="play_id">
+                <foreach item="vo" key="key" name="play_list">
+                    <option value="{$vo.id}"
+                    <if condition="$play_id eq $vo.id ">selected</if>
+                    >{$vo.name}</option>
+                </foreach>
+            </select>
+            <else/>
+            <select class="form-control post-params" lay-search lay-filter="play_id" name="play_id">
+                <foreach item="vo" key="key" name="play_list">
+                    <option value="{$vo.id}">{$vo.name}</option>
+                </foreach>
+            </select>
+        </if>
+    </div>
+</div>
+
+<div class="form-group">
+    <label class="col-sm-2 control-label">区服:</label>
+    <div class="layui-input-block col-md-6 col-sm-10" style="">
+        <if condition="!empty($area)">
+            <select class="form-control post-params" lay-search lay-filter="type" name="area">
+                <foreach item="vo" key="key" name="area_list">
+                    <option value="{$vo}"
+                    <if condition="$area eq $vo ">selected</if>
+                    >{$vo}</option>
+                </foreach>
+            </select>
+            <else/>
+            <select class="form-control post-params" lay-search lay-filter="type" name="area">
+                <foreach item="vo" key="key" name="area_list">
+                    <option value="{$vo}">{$vo}</option>
+                </foreach>
+            </select>
+        </if>
+    </div>
+</div>
+
+
+<div class="form-group">
+    <label class="col-sm-2 control-label">系统:</label>
+    <div class="layui-input-block col-md-6 col-sm-10" style="">
+        <if condition="!empty($service)">
+            <select class="form-control post-params" lay-search lay-filter="type" name="service">
+                <foreach item="vo" key="key" name="service_list">
+                    <option value="{$vo}"
+                    <if condition="$service eq $vo ">selected</if>
+                    >{$vo}</option>
+                </foreach>
+            </select>
+            <else/>
+            <select class="form-control post-params" lay-search lay-filter="type" name="service">
+                <foreach item="vo" key="key" name="service_list">
+                    <option value="{$vo}">{$vo}</option>
+                </foreach>
+            </select>
+        </if>
+    </div>
+</div>
+
+
+<div class="form-group">
+    <label class="col-sm-2 control-label">标题:</label>
+    <div class="layui-input-block col-md-6 col-sm-10">
+        <input type="text" name="title" class="form-control post-params item-left" value="{$title|default=''}">
+    </div>
+</div>
+<div class="form-group">
+    <label class="col-sm-2 control-label">价格:</label>
+    <div class="layui-input-block col-md-6 col-sm-10">
+        <input type="number" name="price" class="form-control post-params item-left" value="{$price|default=''}">
+    </div>
+</div>
+<div class="form-group">
+    <label class="col-sm-2 control-label">押金:</label>
+    <div class="layui-input-block col-md-6 col-sm-10">
+        <input type="number" name="deposit" class="form-control post-params item-left" value="{$deposit|default=''}">
+    </div>
+</div>
+
+
+<div class="form-group" style="display: none;">
+    <label class="col-sm-2 control-label">客服类型:</label>
+    <div class="layui-input-block col-md-6 col-sm-10" style="">
+        <if condition="!empty($customer_type)">
+            <select class="form-control post-params" name="customer_type" lay-filter="customer_type" id="customer_type">
+                <foreach item="vo" key="key" name="customer_type_list">
+                    <option value="{$key}"
+                    <if condition="$customer_type eq $key ">selected</if>
+                    >{$vo}</option>
+                </foreach>
+            </select>
+            <else/>
+            <select class="form-control post-params" lay-filter="customer_type" name="customer_type" id="customer_type">
+                <foreach item="vo" key="key" name="customer_type_list">
+                    <option value="{$key}">{$vo}</option>
+                </foreach>
+            </select>
+        </if>
+    </div>
+</div>
+
+
+<div class="form-group">
+    <label class="col-sm-2 control-label">客服链接:</label>
+    <div class="layui-input-block col-md-6 col-sm-10">
+        <input type="text" name="url" class="form-control post-params item-left" value="{$url|default=''}">
+    </div>
+</div>
+<div class="form-group">
+    <label class="col-sm-2 control-label">客服二维码:</label>
+    <div class="layui-input-block col-md-6 col-sm-10">
+        <input type="hidden" class="form-control post-params item-left" name="image" id="photo-0000009"
+               value="{$image}">
+        <if condition='!empty($image)'>
+            <a href="javascript:imagePreviewDialog('{:cmf_get_asset_url($image)}');">
+                <img src='{:cmf_get_image_preview_url($image)}' id='photo-0000009-preview'
+                     style='width: 85px;height: 80px'>
+            </a>
+            <else/>
+            <img src='/static/images/default.png' id='photo-0000009-preview' style='width: 85px;height: 80px'>
+        </if>
+        <a href="javascript:uploadOneImage('图片上传','#photo-0000009','image');">上传</a>
+        <a onclick="$('#photo-0000009-preview').attr('src','__TMPL__/public/assets/images/default-thumbnail.png');$('#photo-0000009').val('');return false;">取消图片</a>
+    </div>
+</div>
+
+
+<script>
+    layui.use(['layer', 'form'], function () {
+        let layer = layui.layer, form = layui.form;
+        const type = $("#customer_type").val();
+        setShow(type)
+        form.on('select(customer_type)', function (data) {
+            setShow(data.value)
+        })
+
+        function setShow(type) {
+            console.log(type)
+            $('.customer_type').css('display', 'none');
+            $('.customer_type_' + type).css('display', 'block');
+            //可以初始化值为空
+        }
+    });
+</script>
+</span>
+
+
+<div class="form-group">
+    <label class="col-sm-2 control-label">账号唯一编号:</label>
+    <div class="layui-input-block col-md-6 col-sm-10">
+        <input type="text" name="code" class="form-control post-params item-left" value="{$code|default=''}">
+    </div>
+</div>
+
+
+<div class="form-group">
+    <label class="col-sm-2 control-label">游戏截图:
+        <p style="color: red;font-size: 12px;">第一张为封面图,至少上传5张图片</p>
+    </label>
+    <div class="layui-input-block col-md-6 col-sm-10">
+        <if condition="!empty($images)">
+            <ul class="pic-list list-unstyled form-inline" id="photos-goods-0000001">
+                <foreach item="vo" name="images">
+                    <li id="saved-goods-image-0000001-{$key}" style="margin-bottom: 5px;">
+                        <input id="photo-goods-0000001-{$key}" name="images[]" type="hidden" value="{$vo}">
+                        <img id="photo-goods-0000001-{$key}-preview" onclick="parent.imagePreviewDialog(this.src);"
+                             src="{:cmf_get_image_preview_url($vo)}" width="35">
+                        <a href="javascript:uploadOneImage('图片上传','#photo-goods-0000001-{$key}');">替换</a>
+                        <a href="javascript:(function(){$('#saved-goods-image-0000001-{$key}').remove();})();">移除</a>
+                    </li>
+                </foreach>
+            </ul>
+            <else/>
+            <ul class="pic-list list-unstyled form-inline" id="photos-goods-0000001">
+                <li id="saved-goods-image-0000001" style="margin-bottom: 5px;">
+                </li>
+            </ul>
+        </if>
+        <a class="btn btn-sm btn-default"
+           href="javascript:uploadMultiImage('图片上传','#photos-goods-0000001','photos-goods-item-tpl-0000001');">选择图片</a>
+        <script id="photos-goods-item-tpl-0000001" type="text/html">
+            <li id="saved-goods-image-0000001-{id}" style="margin-bottom: 5px;">
+                <input id="photo-goods-0000001-{id}" type="hidden" name="images[]" value="{filepath}">
+                <img id="photo-goods-0000001-{id}-preview" src="{url}" width="35"
+                     onclick="imagePreviewDialog(this.src);">
+                <a href="javascript:uploadOneImage('图片上传','#photo-goods-0000001-{id}');">替换</a>
+                <a href="javascript:(function(){$('#saved-goods-image-0000001-{id}').remove();})();">移除</a>
+            </li>
+        </script>
+    </div>
+</div>
+
+
+<div class="form-group">
+    <label class="col-sm-2 control-label">视频展示:</label>
+    <div class="layui-input-block col-md-6 col-sm-10">
+        <input type="text" class="form-control post-params item-left" name="video" id="file-video-00000012"
+               readonly="readonly" value="{$video}">
+        <if condition='!empty($video)'>
+            <a id="file-video-00000012-preview" href="{:cmf_get_file_download_url($video)}"
+               target="_blank">下载</a>
+        </if>
+        <a href="javascript:uploadOne('视频上传','#file-video-00000012','video');">上传</a>
+    </div>
+</div>
+<div class="form-group">
+    <label class="col-sm-2 control-label">特殊备注:</label>
+    <div class="layui-input-block col-md-6 col-sm-10">
+        <input type="text" name="remark" class="form-control post-params item-left" value="{$remark|default=''}">
+    </div>
+</div>
+<div class="form-group">
+    <label class="col-sm-2 control-label">租期:</label>
+    <div class="layui-input-block col-md-6 col-sm-10">
+        <input type="text" name="lease_term" class="form-control post-params item-left"
+               value="{$lease_term|default=''}">
+    </div>
+</div>
+<div class="form-group">
+    <label class="col-sm-2 control-label">成本价:</label>
+    <div class="layui-input-block col-md-6 col-sm-10">
+        <input type="number" name="cost_price" class="form-control post-params item-left"
+               value="{$cost_price|default=''}">
+    </div>
+</div>
+<div class="form-group">
+    <label class="col-sm-2 control-label">外显价:</label>
+    <div class="layui-input-block col-md-6 col-sm-10">
+        <input type="number" name="show_price" class="form-control post-params item-left"
+               value="{$show_price|default=''}">
+    </div>
+</div>
+<div class="form-group">
+    <label class="col-sm-2 control-label">号主ID:</label>
+    <div class="layui-input-block col-md-6 col-sm-10">
+        <input type="text" name="account_id" class="form-control post-params item-left"
+               value="{$account_id|default=''}">
+    </div>
+</div>
+<div class="form-group">
+    <label class="col-sm-2 control-label">客服ID:</label>
+    <div class="layui-input-block col-md-6 col-sm-10">
+        <input type="text" name="customer_id" class="form-control post-params item-left"
+               value="{$customer_id|default=''}">
+    </div>
+</div>
+
+

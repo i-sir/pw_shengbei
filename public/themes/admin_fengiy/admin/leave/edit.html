@@ -1,0 +1,20 @@
+ <include file="public@header"/></head>
+<body>
+<div class="wrap js-check-wrap">
+    <ul class="nav nav-tabs">
+        <li><a href="{:url('index')}">列表</a></li>
+        <li class="active"><a href="{:url('edit',array('id'=>$id))}"> 查看</a></li>
+    </ul>
+    <form method="post" class="form-horizontal js-ajax-form margin-top-20 layui-form" autocomplete="off" action="{:url('edit_post')}">
+
+        <include file="leave/form"/>
+
+        <!-- 主键id -->
+        <input type="hidden" name="id" value="{$id}">
+
+    </form>
+
+</div>
+<script src="__STATIC__/js/admin.js"></script>
+</body>
+</html>

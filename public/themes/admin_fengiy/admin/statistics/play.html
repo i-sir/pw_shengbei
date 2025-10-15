@@ -1,0 +1,124 @@
+<include file="public@header"/></head>
+<body xmlns="http://www.w3.org/1999/html">
+<div class="wrap js-check-wrap">
+    <ul class="nav nav-tabs">
+        <li class="active"><a href="{:url('play',['params'=>$params])}">陪玩统计</a></li>
+    </ul>
+
+    <form class="well form-inline margin-top-20 layui-form ajax-form w-form-search" method="get" autocomplete="off">
+
+        关键字：
+        <div class="form-group layui-form">
+            <div class="layui-form-item" style="margin-bottom: 0 !important;">
+                <div class="col-md-12">
+                    <div class="layui-inline">
+                        <input type="text" class="form-control" name="keyword" style="width: 180px;"
+                               value="{:input('request.keyword/s','')}" placeholder="输入陪玩昵称或手机号">
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        开始时间：
+        <div class="form-group">
+            <div class="layui-form-item">
+                <div class="col-md-6 col-sm-10"
+                     style="z-index: 2000;display: flex;margin-top: 10px;width: 180px;margin-right: 50px">
+                    <input type="text" class="form-control post-params js-date" name="beginTime"
+                           value="{$beginTime}" placeholder="请输入开始时间">
+                </div>
+            </div>
+        </div>
+
+
+        结束时间：
+        <div class="form-group">
+            <div class="layui-form-item">
+                <div class="col-md-6 col-sm-10" style="z-index: 2000;display: flex;margin-top: 10px;width: 150px;">
+                    <input type="text" class="form-control post-params js-date" name="endTime"
+                           value="{$endTime}" placeholder="请输入结束时间">
+                </div>
+            </div>
+        </div>
+
+        <button type="submit" class="layui-btn" style="margin-left: 80px">搜索</button>
+        <a type="button" class="layui-btn layui-bg-blue ajax-export" href="javascript:;">导出</a>
+        <a class="layui-btn layui-bg-red" href="{:url('play',['params'=>$params])}">清空</a>
+        <input type="hidden" name="is_export" class="is_export" value="0">
+    </form>
+
+
+    <!--    <div class="pagination">{$page|default=''}</div>-->
+
+    <form class="js-ajax-form" method="post" autocomplete="off">
+
+
+        <table class="table table-hover table-bordered">
+            <thead>
+            <tr>
+                <th style="width: 60px">ID</th>
+                <th style="width: 60px">陪玩信息</th>
+                <th style="width: 60px">手机号</th>
+                <th style="width: 60px">余额</th>
+                <th style="width: 60px">已完成订单数量</th>
+                <th style="width: 60px">已完成订单金额</th>
+                <th style="width: 60px">打赏金额</th>
+                <th style="width: 60px">注册时间</th>
+            </tr>
+            </thead>
+            <tbody>
+            <foreach name="list" item="vo">
+                <tr>
+                    <td>{$vo.id}</td>
+                    <td>
+                        <div>
+                            <if condition="!empty($vo['avatar'])">
+                                <a href="javascript:imagePreviewDialog('{:cmf_get_image_preview_url($vo.avatar)}');">
+                                    <img src="{:cmf_get_image_preview_url($vo.avatar)}"
+                                         style="width:30px;height:30px;border-radius:30px;">
+                                </a>
+                            </if>
+                            <span ondblclick="copyContent('{$vo.openid}')">{$vo.nickname}</span>
+                        </div>
+                    </td>
+                    <td>{$vo.phone}</td>
+                    <td>{$vo.balance}</td>
+                    <td>{$vo.order_total}</td>
+                    <td>{$vo.order_amount}</td>
+                    <td>{$vo.reward_amount}</td>
+
+                    <td>{$vo.create_time|date='Y-m-d H:i:s'}</td>
+
+                </tr>
+            </foreach>
+            </tbody>
+        </table>
+    </form>
+
+    <div class="pagination">{$page|default=''}</div>
+
+</div>
+<script src="__STATIC__/js/admin.js"></script>
+</body>
+</html>
+
+
+<!--导出,筛选查询-->
+<script>
+    //导出
+    $(".ajax-export").click(function () {
+        //alert("正在开发中...");
+        $(".is_export").val(1);
+        $(".ajax-form").submit();
+        $(".is_export").val(0);
+        return false;
+    });
+
+    //搜索
+    $(".bt_search").click(function () {
+        $(".w-form-search").removeAttr('action');
+        $(".w-form-search").attr('action', "/index.html");
+        $(".w-form-search").submit();
+    });
+</script>
+

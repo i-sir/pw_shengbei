@@ -1,0 +1,246 @@
+ <include file="public@header"/>
+<style>
+    textarea {
+        border: 0;
+        outline: none;
+        background-color: rgba(0, 0, 0, 0);
+    }
+
+    input {
+        border: 0;
+        outline: none;
+        background-color: rgba(0, 0, 0, 0);
+    }
+
+    .col-md-6 {
+        margin-top: 7px;
+    }
+</style>
+
+</head>
+<body>
+<div class="wrap js-check-wrap">
+    <ul class="nav nav-tabs">
+        <li class="active"><a href="{:url('find',['id'=>$id,'params'=>$params])}">查看</a></li>
+    </ul>
+    <form method="post" class="form-horizontal js-ajax-form margin-top-20 layui-form" autocomplete="off"
+          action="{:url('edit_post',['id'=>$id,'params'=>$params])}">
+
+
+        
+            <div class="form-group">
+                <label class="col-sm-2 control-label">游戏名:</label>
+                <div class="layui-input-block col-md-6 col-sm-10">
+                                                {$play_id|default=''}
+                    
+                </div>
+            </div>
+
+
+        
+            <div class="form-group">
+                <label class="col-sm-2 control-label">区服:</label>
+                <div class="layui-input-block col-md-6 col-sm-10">
+                                                {$area|default=''}
+                    
+                </div>
+            </div>
+
+
+        
+            <div class="form-group">
+                <label class="col-sm-2 control-label">系统:</label>
+                <div class="layui-input-block col-md-6 col-sm-10">
+                                                {$service|default=''}
+                    
+                </div>
+            </div>
+
+
+        
+            <div class="form-group">
+                <label class="col-sm-2 control-label">标题:</label>
+                <div class="layui-input-block col-md-6 col-sm-10">
+                                                {$title|default=''}
+                    
+                </div>
+            </div>
+
+
+        
+            <div class="form-group">
+                <label class="col-sm-2 control-label">价格:</label>
+                <div class="layui-input-block col-md-6 col-sm-10">
+                                                {$price|default=''}
+                    
+                </div>
+            </div>
+
+
+        
+            <div class="form-group">
+                <label class="col-sm-2 control-label">押金:</label>
+                <div class="layui-input-block col-md-6 col-sm-10">
+                                                {$deposit|default=''}
+                    
+                </div>
+            </div>
+
+
+        
+            <div class="form-group">
+                <label class="col-sm-2 control-label">客服类型:</label>
+                <div class="layui-input-block col-md-6 col-sm-10">
+                                                {$customer_type_text|default=''}
+                    
+                </div>
+            </div>
+
+
+        
+            <div class="form-group">
+                <label class="col-sm-2 control-label">客服链接:</label>
+                <div class="layui-input-block col-md-6 col-sm-10">
+                                                {$url|default=''}
+                    
+                </div>
+            </div>
+
+
+        
+            <div class="form-group">
+                <label class="col-sm-2 control-label">二维码:</label>
+                <div class="layui-input-block col-md-6 col-sm-10">
+                                                <if condition='!empty($image)'>
+<a href="javascript:imagePreviewDialog('{:cmf_get_asset_url($image)}');">
+<img src='{:cmf_get_asset_url($image)}' style='width: 35px;height: 35px'>
+</a>
+<else/>
+暂无上传
+</if>
+
+                </div>
+            </div>
+
+
+        
+            <div class="form-group">
+                <label class="col-sm-2 control-label">账号唯一编号:</label>
+                <div class="layui-input-block col-md-6 col-sm-10">
+                                                {$code|default=''}
+                    
+                </div>
+            </div>
+
+
+        
+            <div class="form-group">
+                <label class="col-sm-2 control-label">游戏截图:</label>
+                <div class="layui-input-block col-md-6 col-sm-10">
+                                                {$images|default=''}
+                    
+                </div>
+            </div>
+
+
+        
+            <div class="form-group">
+                <label class="col-sm-2 control-label">视频展示:</label>
+                <div class="layui-input-block col-md-6 col-sm-10">
+                                                <if condition='!empty($video)'>
+<a href="{:cmf_get_file_download_url($video)}"
+										target="_blank">下载</a>
+</a>
+<else/>
+暂无上传
+</if>
+
+                </div>
+            </div>
+
+
+        
+            <div class="form-group">
+                <label class="col-sm-2 control-label">特殊备注:</label>
+                <div class="layui-input-block col-md-6 col-sm-10">
+                                                {$remark|default=''}
+                    
+                </div>
+            </div>
+
+
+        
+            <div class="form-group">
+                <label class="col-sm-2 control-label">状态:</label>
+                <div class="layui-input-block col-md-6 col-sm-10">
+                                                {$status_text|default=''}
+                    
+                </div>
+            </div>
+
+
+        
+            <div class="form-group">
+                <label class="col-sm-2 control-label">租期:</label>
+                <div class="layui-input-block col-md-6 col-sm-10">
+                                                {$lease_term|default=''}
+                    
+                </div>
+            </div>
+
+
+        
+            <div class="form-group">
+                <label class="col-sm-2 control-label">成本价:</label>
+                <div class="layui-input-block col-md-6 col-sm-10">
+                                                {$cost_price|default=''}
+                    
+                </div>
+            </div>
+
+
+        
+            <div class="form-group">
+                <label class="col-sm-2 control-label">外显价:</label>
+                <div class="layui-input-block col-md-6 col-sm-10">
+                                                {$show_price|default=''}
+                    
+                </div>
+            </div>
+
+
+        
+            <div class="form-group">
+                <label class="col-sm-2 control-label">号主ID:</label>
+                <div class="layui-input-block col-md-6 col-sm-10">
+                                                {$account_id|default=''}
+                    
+                </div>
+            </div>
+
+
+        
+            <div class="form-group">
+                <label class="col-sm-2 control-label">客服ID:</label>
+                <div class="layui-input-block col-md-6 col-sm-10">
+                                                {$customer_id|default=''}
+                    
+                </div>
+            </div>
+
+
+        
+
+        <!-- 主键id -->
+        <input type="text" name="id" value="{$id}" class="form-control post-params item-left" style="display: none">
+
+
+    </form>
+
+</div>
+<script src="__STATIC__/js/admin.js"></script>
+</body>
+</html>
+
+
+

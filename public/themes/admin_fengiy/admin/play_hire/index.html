@@ -1,0 +1,254 @@
+<include file="public@header"/></head>
+<body xmlns="http://www.w3.org/1999/html">
+<div class="wrap js-check-wrap">
+    <ul class="nav nav-tabs">
+        <li class="active"><a href="{:url('index',['params'=>$params])}">租号管理</a></li>
+
+        <if condition="cmf_auth_check(cmf_get_current_admin_id(),'admin/PlayHire/add')">
+            <li><a href="{:url('add',['params'=>$params])}">添加</a></li>
+        </if>
+
+    </ul>
+
+    <form class="well form-inline margin-top-20 layui-form ajax-form w-form-search" method="get" autocomplete="off">
+        关键字：
+        <div class="form-group layui-form">
+            <div class="layui-form-item" style="margin-bottom: 0 !important;">
+                <div class="col-md-12">
+                    <div class="layui-inline">
+                        <input type="text" class="form-control" name="keyword" style="width: 180px;"
+                               value="{:input('request.keyword/s','')}" placeholder="请输标题,备注,区服,系统搜索">
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        号主ID：
+        <div class="form-group layui-form">
+            <div class="layui-form-item" style="margin-bottom: 0 !important;">
+                <div class="col-md-12">
+                    <div class="layui-inline">
+                        <input type="text" class="form-control" name="account_id" style="width: 180px;"
+                               value="{:input('request.account_id/s','')}" placeholder="请输号主ID搜索">
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        客服ID：
+        <div class="form-group layui-form">
+            <div class="layui-form-item" style="margin-bottom: 0 !important;">
+                <div class="col-md-12">
+                    <div class="layui-inline">
+                        <input type="text" class="form-control" name="customer_id" style="width: 180px;"
+                               value="{:input('request.customer_id/s','')}" placeholder="请输客服ID搜索">
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        编号：
+        <div class="form-group layui-form">
+            <div class="layui-form-item" style="margin-bottom: 0 !important;">
+                <div class="col-md-12">
+                    <div class="layui-inline">
+                        <input type="text" class="form-control" name="code" style="width: 180px;"
+                               value="{:input('request.code/s','')}" placeholder="请输编号搜索">
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        状态：
+        <div class="form-group">
+            <div class="layui-form-item">
+                <div class="col-md-6 col-sm-10" style="margin-top: 10px;width: 180px;">
+                    <select name="status" lay-search>
+                        <option value=""
+                        <if condition="$status eq '' ">selected</if>
+                        >暂不选择</option>
+                        <foreach name="status_list" key="key" item="vo">
+                            <option value="{$key}"
+                            <if condition="$status eq $key ">selected</if>
+                            > {$vo}</option>
+                        </foreach>
+                    </select>
+                </div>
+            </div>
+        </div>
+
+        <br>
+        <!--        控制器-->
+        <!--        $where[] = $this->getBetweenTime($params['beginTime'], $params['endTime']);  -->
+        开始时间：
+        <div class="form-group">
+            <div class="layui-form-item">
+                <div class="col-md-6 col-sm-10"
+                     style="margin-top: 10px;width: 180px;margin-right: 50px">
+                    <input type="text" class="form-control post-params js-date" name="beginTime"
+                           value="{:input('request.beginTime/s','')}" placeholder="请输入开始时间">
+                </div>
+            </div>
+        </div>
+
+
+        结束时间：
+        <div class="form-group">
+            <div class="layui-form-item">
+                <div class="col-md-6 col-sm-10" style="margin-top: 10px;width: 150px;">
+                    <input type="text" class="form-control post-params js-date" name="endTime"
+                           value="{:input('request.endTime/s','')}" placeholder="请输入结束时间">
+                </div>
+            </div>
+        </div>
+
+
+       <span style="margin-left: 100px;"> 结算开始时间：</span>
+        <div class="form-group">
+            <div class="layui-form-item">
+                <div class="col-md-6 col-sm-10" style="margin-top: 10px;width: 150px;">
+                    <input type="text" class="form-control post-params js-date" name="completeBeginTimecompleteBeginTime"
+                           value="{:input('request.completeBeginTimecompleteBeginTime/s','')}" placeholder="请输入结算开始时间">
+                </div>
+            </div>
+        </div>
+
+
+        <span style="margin-left: 100px;"> 结算结束时间：</span>
+        <div class="form-group">
+            <div class="layui-form-item">
+                <div class="col-md-6 col-sm-10" style="margin-top: 10px;width: 150px;">
+                    <input type="text" class="form-control post-params js-date" name="completeEndTime"
+                           value="{:input('request.completeEndTime/s','')}" placeholder="请输入结算结束时间">
+                </div>
+            </div>
+        </div>
+
+
+
+
+        <button type="submit" class="layui-btn" style="margin-left: 100px">搜索</button>
+        <a type="button" class="layui-btn layui-bg-blue ajax-export" href="javascript:;">导出</a>
+        <a class="layui-btn layui-bg-red" href="{:url('index',['params'=>$params])}">清空</a>
+
+
+        <input type="hidden" name="is_export" class="is_export" value="0">
+    </form>
+
+
+    <form class="js-ajax-form" method="post" autocomplete="off">
+
+        <br>
+        <div class="table-actions">
+
+
+        </div>
+
+
+        <table class="table table-hover table-bordered">
+            <thead>
+            <tr>
+                <th style="width: 60px">ID</th>
+                <th style="width: 60px">游戏名</th>
+                <th style="width: 60px">区服</th>
+                <th style="width: 60px">系统</th>
+                <th style="width: 60px">标题</th>
+                <th style="width: 60px">价格</th>
+                <th style="width: 60px">押金</th>
+                <th style="width: 60px">客服类型</th>
+                <th style="width: 60px">账号唯一编号</th>
+                <th style="width: 60px">视频展示</th>
+                <th style="width: 60px">特殊备注</th>
+                <th style="width: 60px">状态</th>
+                <th style="width: 60px">租期</th>
+                <th style="width: 60px">成本价</th>
+                <th style="width: 60px">外显价</th>
+                <th style="width: 60px">号主ID</th>
+                <th style="width: 60px">客服ID</th>
+                <th style="width: 60px">结算时间</th>
+                <th style="width: 60px">创建时间</th>
+
+                <th style="width: 80px">操作</th>
+            </tr>
+            </thead>
+            <tbody>
+            <foreach name="list" item="vo">
+                <tr>
+                    <td>{$vo.id}</td>
+                    <td>{$vo.play_name}</td>
+                    <td>{$vo.area}</td>
+                    <td>{$vo.service}</td>
+                    <td>{$vo.title}</td>
+                    <td>{$vo.price}</td>
+                    <td>{$vo.deposit}</td>
+                    <td>{$vo.customer_type_text}</td>
+                    <td>{$vo.code}</td>
+                    <td>
+                        <if condition='!empty($vo.video)'>
+                            <a href="{:cmf_get_file_download_url($vo.video)}"
+                               target="_blank">下载</a>
+                            </a>
+                            <else/>
+                            暂无上传
+                        </if>
+                    </td>
+                    <td>{$vo.remark}</td>
+                    <td>{$vo.status_text}</td>
+                    <td>{$vo.lease_term}</td>
+                    <td>{$vo.cost_price}</td>
+                    <td>{$vo.show_price}</td>
+                    <td>{$vo.account_id}</td>
+                    <td>{$vo.customer_id}</td>
+                    <td>
+                        <if condition="$vo.complete_time">
+                            {$vo.complete_time|date='Y-m-d H:i:s'}
+                        </if>
+                    </td>
+                    <td>{$vo.create_time|date='Y-m-d H:i:s'}</td>
+                    <td>
+                        <a class="layui-btn layui-btn-primary layui-border-blue layui-btn-xs"
+                           href="javascript:parent.openIframeLayer('{:url('status',['id'=>$vo.id])}','',{ area: ['65%', '85%'],move:'.layui-layer-title'});"
+                        >状态</a>
+
+                        <if condition="cmf_auth_check(cmf_get_current_admin_id(),'admin/PlayHire/edit')">
+                            <a class="layui-btn layui-btn-primary layui-border-green layui-btn-xs"
+                               href="{:url('edit',['id'=>$vo.id,'params'=>$params])}">编辑</a>
+                        </if>
+                        <if condition="cmf_auth_check(cmf_get_current_admin_id(),'admin/PlayHire/delete')">
+                            <a class="layui-btn layui-btn-primary layui-border-red layui-btn-xs js-ajax-delete"
+                               href="{:url('delete',['id'=>$vo.id,'params'=>$params])}">删除</a>
+                        </if>
+                    </td>
+                </tr>
+            </foreach>
+            </tbody>
+        </table>
+    </form>
+
+    <div class="pagination">{$page|default=''}</div>
+</div>
+<script src="__STATIC__/js/admin.js"></script>
+</body>
+</html>
+
+
+<!--导出,筛选查询-->
+<script>
+    //导出
+    $(".ajax-export").click(function () {
+        //alert("正在开发中...");
+        $(".is_export").val(1);
+        $(".ajax-form").submit();
+        $(".is_export").val(0);
+        return false;
+    });
+
+    //搜索
+    $(".bt_search").click(function () {
+        $(".w-form-search").removeAttr('action');
+        $(".w-form-search").attr('action', "/index.html");
+        $(".w-form-search").submit();
+    });
+</script>
+

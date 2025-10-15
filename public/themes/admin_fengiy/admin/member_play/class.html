@@ -1,0 +1,40 @@
+<include file="public@header"/></head>
+<body>
+<div class="wrap js-check-wrap">
+    <form method="post" class="form-horizontal js-ajax-form margin-top-20 layui-form" autocomplete="off"
+          action="{:url('class_post')}" onsubmit="return false">
+
+
+        <foreach name="class_list" item="val">
+            <div class="form-group">
+                <label class="col-sm-2 control-label">{$val.name}:</label>
+                <div class="layui-input-block col-md-6 col-sm-10">
+                    <foreach name="val.children" item="value">
+                    <input type="checkbox" class="form-control post-params" lay-skin="tag" name="play_ids[{$value.id}]" title="{$value.name}"
+                        <if condition="$value.checked">
+                        checked
+                        </if>
+                    >
+                    </foreach>
+                </div>
+            </div>
+        </foreach>
+
+        <!-- 主键id -->
+        <input type="hidden" name="id" value="{$id}" class="form-control post-params item-left">
+
+        <!--增加提交按钮,防止回车提交表单,隐藏下-->
+        <button type="submit" class="layui-btn js-ajax-submit" style="display: none;">保存</button>
+
+        <div class="col-sm-offset-2 col-sm-10 edit_post_save">
+            <button type="submit" class="layui-btn js-ajax-submit" id="save">保存</button>
+        </div>
+
+
+    </form>
+
+</div>
+<script src="__STATIC__/js/admin.js"></script>
+</body>
+</html>
+

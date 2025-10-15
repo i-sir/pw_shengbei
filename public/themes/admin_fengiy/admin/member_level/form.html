@@ -1,0 +1,41 @@
+<div class="form-group">
+    <label class="col-sm-2 control-label">名称:</label>
+    <div class="layui-input-block col-md-6 col-sm-10">
+        <input type="text" name="name" class="form-control post-params item-left" value="{$name|default=''}">
+    </div>
+</div>
+<div class="form-group">
+    <label class="col-sm-2 control-label">接单数:</label>
+    <div class="layui-input-block col-md-6 col-sm-10">
+        <input type="number" name="number" class="form-control post-params item-left" value="{$number|default=''}">
+    </div>
+</div>
+<div class="form-group">
+    <label class="col-sm-2 control-label">提成比例(%):</label>
+    <div class="layui-input-block col-md-6 col-sm-10">
+        <input type="number" name="commission" class="form-control post-params item-left"
+               value="{$commission|default=''}">
+    </div>
+</div>
+
+<div class="form-group">
+    <label class="col-sm-2 control-label">图标</label>
+    <div class="layui-input-block col-md-6 col-sm-10">
+        <input id="photo-1000000" type="hidden" class="form-control post-params item-left" name="image"
+               value="{$image|default=''}">
+        <if condition="!empty($image)">
+            <a href="javascript:imagePreviewDialog('{:cmf_get_image_preview_url($image)}');">
+                <img src="{:cmf_get_image_preview_url($image)}"
+                     id="photo-1000000-preview" style="width: 80px;height: 80px">
+            </a>
+            <else/>
+            <img src="/static/images/default.png"
+                 id="photo-1000000-preview" style="width: 80px;height: 80px">
+        </if>
+        <a href="javascript:uploadOneImage('图标上传','#photo-1000000');">上传</a>
+        <a onclick="$('#photo-1000000-preview').attr('src','__TMPL__/public/assets/images/default-thumbnail.png');$('#photo-1000000').val('');return false;">取消图片</a>
+    </div>
+</div>
+
+
+
