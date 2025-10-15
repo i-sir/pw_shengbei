@@ -92,7 +92,7 @@ class WxBaseController extends AuthController
     /**
      * 微信订单退款 测试
      *   test_environment: http://lscs.ikun:9090/api/wxapp/wx_base/wx_refund_test
-     *   official_environment: https://pw216.aejust.net/api/wxapp/wx_base/wx_refund_test?order_num=250610206819667730
+     *   official_environment: http://shengbei.ausite.cn/api/wxapp/wx_base/wx_refund_test?order_num=250610206819667730
      *   api: /wxapp/wx_base/wx_refund_test
      *
      */
@@ -136,7 +136,7 @@ class WxBaseController extends AuthController
      *
      *
      *   test_environment: http://lscs.ikun:9090/api/wxapp/wx_base/send_temp_msg_test
-     *   official_environment: https://pw216.aejust.net/api/wxapp/wx_base/send_temp_msg_test
+     *   official_environment: http://shengbei.ausite.cn/api/wxapp/wx_base/send_temp_msg_test
      *   api: /wxapp/wx_base/send_temp_msg_test
      *
      */
@@ -185,7 +185,7 @@ class WxBaseController extends AuthController
      * 发货测试用
      *
      *   test_environment: http://lscs.ikun:9090/api/wxapp/wx_base/send_shipping
-     *   official_environment: https://pw216.aejust.net/api/wxapp/wx_base/send_shipping
+     *   official_environment: http://shengbei.ausite.cn/api/wxapp/wx_base/send_shipping
      *   api: /wxapp/wx_base/send_shipping
      *   remark_name: 发货测试用
      *
@@ -428,7 +428,7 @@ class WxBaseController extends AuthController
 
     /**
      * 微信转账回调 (官方回调)
-     * 调用示例 https://pw216.aejust.net/api/wxapp/wx_base/notify
+     * 调用示例 http://shengbei.ausite.cn/api/wxapp/wx_base/notify
      */
     public function notify()
     {
@@ -490,7 +490,7 @@ class WxBaseController extends AuthController
 
     /**
      *  微信转账实例
-     *  调用示例 https://pw216.aejust.net/api/wxapp/wx_base/example
+     *  调用示例 http://shengbei.ausite.cn/api/wxapp/wx_base/example
      */
     public function example()
     {
@@ -523,7 +523,7 @@ class WxBaseController extends AuthController
 
     /**
      * 将公众号的official_openid存入member表中   可以在用户授权登录成功后操作
-     * 调用示例 https://pw216.aejust.net/api/wxapp/wx_base/update_official_openid
+     * 调用示例 http://shengbei.ausite.cn/api/wxapp/wx_base/update_official_openid
      */
     public function update_official_openid()
     {
@@ -544,7 +544,7 @@ class WxBaseController extends AuthController
      *
      *
      *   test_environment: http://lscs.ikun:9090/api/wxapp/wx_base/find_official
-     *   official_environment: https://pw216.aejust.net/api/wxapp/wx_base/find_official
+     *   official_environment: http://shengbei.ausite.cn/api/wxapp/wx_base/find_official
      *   api: /wxapp/wx_base/find_official
      *
      * 相关文档:https://developers.weixin.qq.com/doc/offiaccount/Message_Management/Passive_user_reply_message.html
@@ -708,7 +708,7 @@ class WxBaseController extends AuthController
      * @return  string
      *
      *   test_environment: http://lscs.ikun:9090/api/wxapp/wx_base/sendTempMsg
-     *   official_environment: https://pw216.aejust.net/api/wxapp/wx_base/sendTempMsg
+     *   official_environment: http://shengbei.ausite.cn/api/wxapp/wx_base/sendTempMsg
      *   api: /wxapp/wx_base/sendTempMsg
      *
      */
@@ -773,7 +773,7 @@ class WxBaseController extends AuthController
      * 用户扫码后,进入公众号会携带参数以及ticket
      *
      *   test_environment: http://lscs.ikun:9090/api/wxapp/wx_base/qrcode_create
-     *   official_environment: https://pw216.aejust.net/api/wxapp/wx_base/qrcode_create
+     *   official_environment: http://shengbei.ausite.cn/api/wxapp/wx_base/qrcode_create
      *   api: /wxapp/wx_base/qrcode_create
      *
      * 相关文档:
@@ -808,7 +808,7 @@ class WxBaseController extends AuthController
      * 增加菜单   用浏览器直接访问下 然后就可以直接更新了
      *
      *   test_environment: http://lscs.ikun:9090/api/wxapp/wx_base/addWeixinMenu
-     *   official_environment: https://pw216.aejust.net/api/wxapp/wx_base/addWeixinMenu
+     *   official_environment: http://shengbei.ausite.cn/api/wxapp/wx_base/addWeixinMenu
      *   api: /wxapp/wx_base/addWeixinMenu
      *
      */
@@ -863,7 +863,7 @@ class WxBaseController extends AuthController
      * @throws \WeChat\Exceptions\LocalCacheException
      *
      *   test_environment: http://lscs.ikun:9090/api/wxapp/wx_base/batch_get_material
-     *   official_environment: https://pw216.aejust.net/api/wxapp/wx_base/batch_get_material
+     *   official_environment: http://shengbei.ausite.cn/api/wxapp/wx_base/batch_get_material
      *   api: /wxapp/wx_base/batch_get_material
      *
      */
@@ -910,7 +910,7 @@ class WxBaseController extends AuthController
      * 与获取Access token获取的调用凭证完全隔离，互不影响。该接口仅支持 POST JSON 形式的调用；
      *
      *   test_environment: http://lscs.ikun:9090/api/wxapp/wx_base/get_stable_access_token
-     *   official_environment: https://pw216.aejust.net/api/wxapp/wx_base/get_stable_access_token
+     *   official_environment: http://shengbei.ausite.cn/api/wxapp/wx_base/get_stable_access_token
      *   api: /wxapp/wx_base/get_stable_access_token
      *
      *  只针对公众号

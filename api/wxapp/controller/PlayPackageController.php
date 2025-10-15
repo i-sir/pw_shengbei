@@ -14,8 +14,8 @@ namespace api\wxapp\controller;
  *     "create_time"             =>"2024-04-14 11:18:36",
  *     "version"                 =>"1.0",
  *     "use"                     => new \api\wxapp\controller\PlayPackageController();
- *     "test_environment"        =>"http://pw216.ikun/api/wxapp/play_package/index",
- *     "official_environment"    =>"https://pw216.aejust.net/api/wxapp/play_package/index",
+ *     "test_environment"        =>"http://pw-shengbei.ikun:9090/api/wxapp/play_package/index",
+ *     "official_environment"    =>"http://shengbei.ausite.cn/api/wxapp/play_package/index",
  * )
  */
 
@@ -43,7 +43,7 @@ class PlayPackageController extends AuthController
     /**
      * 默认接口
      * /api/wxapp/play_package/index
-     * https://pw216.aejust.net/api/wxapp/play_package/index
+     * http://shengbei.ausite.cn/api/wxapp/play_package/index
      */
     public function index()
     {
@@ -140,8 +140,8 @@ class PlayPackageController extends AuthController
      * )
      *
      *
-     *   test_environment: http://pw216.ikun/api/wxapp/play_package/find_play_package_list
-     *   official_environment: https://pw216.aejust.net/api/wxapp/play_package/find_play_package_list
+     *   test_environment: http://pw-shengbei.ikun:9090/api/wxapp/play_package/find_play_package_list
+     *   official_environment: http://shengbei.ausite.cn/api/wxapp/play_package/find_play_package_list
      *   api:  /wxapp/play_package/find_play_package_list
      *   remark_name: 套餐管理 列表
      *
@@ -204,8 +204,8 @@ class PlayPackageController extends AuthController
      * )
      *
      *
-     *   test_environment: http://pw216.ikun/api/wxapp/play_package/find_play_package_index
-     *   official_environment: https://pw216.aejust.net/api/wxapp/play_package/find_play_package_index
+     *   test_environment: http://pw-shengbei.ikun:9090/api/wxapp/play_package/find_play_package_index
+     *   official_environment: http://shengbei.ausite.cn/api/wxapp/play_package/find_play_package_index
      *   api:  /wxapp/play_package/find_play_package_index
      *   remark_name: 首页套餐id
      *
@@ -278,8 +278,8 @@ class PlayPackageController extends AuthController
      *     @OA\Response(response="default", description="An example resource")
      * )
      *
-     *   test_environment: http://pw216.ikun/api/wxapp/play_package/find_play_package
-     *   official_environment: https://pw216.aejust.net/api/wxapp/play_package/find_play_package
+     *   test_environment: http://pw-shengbei.ikun:9090/api/wxapp/play_package/find_play_package
+     *   official_environment: http://shengbei.ausite.cn/api/wxapp/play_package/find_play_package
      *   api:  /wxapp/play_package/find_play_package
      *   remark_name: 套餐管理 详情
      *

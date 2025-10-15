@@ -29,8 +29,8 @@ class TaskController
     /**
      * 执行定时任务
      *
-     *   test_environment: http://pw216.ikun/api/wxapp/task/index
-     *   official_environment: https://pw216.aejust.net/api/wxapp/task/index
+     *   test_environment: http://pw-shengbei.ikun:9090/api/wxapp/task/index
+     *   official_environment: http://shengbei.ausite.cn/api/wxapp/task/index
      *   api: /wxapp/task/index
      *   remark_name: 执行定时任务
      *
@@ -52,7 +52,7 @@ class TaskController
 
     /**
      * 每周扣除保证金
-     * https://pw216.aejust.net/api/wxapp/task/dec_bond
+     * http://shengbei.ausite.cn/api/wxapp/task/dec_bond
      */
     public function dec_bond()
     {
@@ -80,7 +80,7 @@ class TaskController
     }
 
     //通知陪玩 & 余额支付
-    //https://pw216.aejust.net/api/wxapp/task/send
+    //http://shengbei.ausite.cn/api/wxapp/task/send
     public function send()
     {
         $PlayPackageOrderModel = new \initmodel\PlayPackageOrderModel(); //套餐订单   (ps:InitModel)

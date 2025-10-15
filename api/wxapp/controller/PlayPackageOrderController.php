@@ -14,8 +14,8 @@ namespace api\wxapp\controller;
  *     "create_time"             =>"2024-04-15 14:19:38",
  *     "version"                 =>"1.0",
  *     "use"                     => new \api\wxapp\controller\PlayPackageOrderController();
- *     "test_environment"        =>"http://pw216.ikun/api/wxapp/play_package_order/index",
- *     "official_environment"    =>"https://pw216.aejust.net/api/wxapp/play_package_order/index",
+ *     "test_environment"        =>"http://pw-shengbei.ikun:9090/api/wxapp/play_package_order/index",
+ *     "official_environment"    =>"http://shengbei.ausite.cn/api/wxapp/play_package_order/index",
  * )
  */
 
@@ -54,7 +54,7 @@ class PlayPackageOrderController extends AuthController
     /**
      * 默认接口
      * /api/wxapp/play_package_order/index
-     * https://pw216.aejust.net/api/wxapp/play_package_order/index
+     * http://shengbei.ausite.cn/api/wxapp/play_package_order/index
      */
     public function index()
     {
@@ -116,8 +116,8 @@ class PlayPackageOrderController extends AuthController
      * )
      *
      *
-     *   test_environment: http://pw216.ikun/api/wxapp/play_package_order/find_order_list
-     *   official_environment: https://pw216.aejust.net/api/wxapp/play_package_order/find_order_list
+     *   test_environment: http://pw-shengbei.ikun:9090/api/wxapp/play_package_order/find_order_list
+     *   official_environment: http://shengbei.ausite.cn/api/wxapp/play_package_order/find_order_list
      *   api:  /wxapp/play_package_order/find_order_list
      *   remark_name: 套餐订单 列表
      *
@@ -186,8 +186,8 @@ class PlayPackageOrderController extends AuthController
      *     @OA\Response(response="default", description="An example resource")
      * )
      *
-     *   test_environment: http://pw216.ikun/api/wxapp/play_package_order/find_order
-     *   official_environment: https://pw216.aejust.net/api/wxapp/play_package_order/find_order
+     *   test_environment: http://pw-shengbei.ikun:9090/api/wxapp/play_package_order/find_order
+     *   official_environment: http://shengbei.ausite.cn/api/wxapp/play_package_order/find_order
      *   api:  /wxapp/play_package_order/find_order
      *   remark_name: 套餐订单 详情
      *
@@ -419,8 +419,8 @@ class PlayPackageOrderController extends AuthController
      *     @OA\Response(response="default", description="An example resource")
      * )
      *
-     *   test_environment: http://pw216.ikun/api/wxapp/play_package_order/add_order
-     *   official_environment: https://pw216.aejust.net/api/wxapp/play_package_order/add_order
+     *   test_environment: http://pw-shengbei.ikun:9090/api/wxapp/play_package_order/add_order
+     *   official_environment: http://shengbei.ausite.cn/api/wxapp/play_package_order/add_order
      *   api:  /wxapp/play_package_order/add_order
      *   remark_name: 下单
      *
@@ -620,8 +620,8 @@ class PlayPackageOrderController extends AuthController
      *     @OA\Response(response="default", description="An example resource")
      * )
      *
-     *   test_environment: http://pw216.ikun/api/wxapp/play_package_order/cancel_order
-     *   official_environment: https://pw216.aejust.net/api/wxapp/play_package_order/cancel_order
+     *   test_environment: http://pw-shengbei.ikun:9090/api/wxapp/play_package_order/cancel_order
+     *   official_environment: http://shengbei.ausite.cn/api/wxapp/play_package_order/cancel_order
      *   api:  /wxapp/play_package_order/cancel_order
      *   remark_name: 取消订单
      *
@@ -683,8 +683,8 @@ class PlayPackageOrderController extends AuthController
      *     @OA\Response(response="default", description="An example resource")
      * )
      *
-     *   test_environment: http://pw216.ikun/api/wxapp/play_package_order/cancel_order2
-     *   official_environment: https://pw216.aejust.net/api/wxapp/play_package_order/cancel_order2
+     *   test_environment: http://pw-shengbei.ikun:9090/api/wxapp/play_package_order/cancel_order2
+     *   official_environment: http://shengbei.ausite.cn/api/wxapp/play_package_order/cancel_order2
      *   api:  /wxapp/play_package_order/cancel_order2
      *   remark_name: 取消订单   退款操作
      *
@@ -746,8 +746,8 @@ class PlayPackageOrderController extends AuthController
      *     @OA\Response(response="default", description="An example resource")
      * )
      *
-     *   test_environment: http://pw216.ikun/api/wxapp/play_package_order/refund_order
-     *   official_environment: https://pw216.aejust.net/api/wxapp/play_package_order/refund_order?id=36795
+     *   test_environment: http://pw-shengbei.ikun:9090/api/wxapp/play_package_order/refund_order
+     *   official_environment: http://shengbei.ausite.cn/api/wxapp/play_package_order/refund_order?id=36795
      *   api:  /wxapp/play_package_order/refund_order
      *   remark_name: 申请退款
      *
@@ -835,8 +835,8 @@ class PlayPackageOrderController extends AuthController
      *     @OA\Response(response="default", description="An example resource")
      * )
      *
-     *   test_environment: http://pw216.ikun/api/wxapp/play_package_order/accomplish_order
-     *   official_environment: https://pw216.aejust.net/api/wxapp/play_package_order/accomplish_order?id=33
+     *   test_environment: http://pw-shengbei.ikun:9090/api/wxapp/play_package_order/accomplish_order
+     *   official_environment: http://shengbei.ausite.cn/api/wxapp/play_package_order/accomplish_order?id=33
      *   api:  /wxapp/play_package_order/accomplish_order
      *   remark_name: 完成订单,用户
      *
@@ -952,8 +952,8 @@ class PlayPackageOrderController extends AuthController
      *     @OA\Response(response="default", description="An example resource")
      * )
      *
-     *   test_environment: http://pw216.ikun/api/wxapp/play_package_order/encore_order
-     *   official_environment: https://pw216.aejust.net/api/wxapp/play_package_order/encore_order
+     *   test_environment: http://pw-shengbei.ikun:9090/api/wxapp/play_package_order/encore_order
+     *   official_environment: http://shengbei.ausite.cn/api/wxapp/play_package_order/encore_order
      *   api:  /wxapp/play_package_order/encore_order
      *   remark_name: 再来一单
      *
@@ -1136,8 +1136,8 @@ class PlayPackageOrderController extends AuthController
      *     @OA\Response(response="default", description="An example resource")
      * )
      *
-     *   test_environment: http://pw216.ikun/api/wxapp/play_package_order/check_encore_order
-     *   official_environment: https://pw216.aejust.net/api/wxapp/play_package_order/check_encore_order
+     *   test_environment: http://pw-shengbei.ikun:9090/api/wxapp/play_package_order/check_encore_order
+     *   official_environment: http://shengbei.ausite.cn/api/wxapp/play_package_order/check_encore_order
      *   api:  /wxapp/play_package_order/check_encore_order
      *   remark_name: 检测是否可以再来一单
      *

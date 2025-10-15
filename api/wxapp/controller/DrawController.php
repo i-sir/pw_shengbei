@@ -14,8 +14,8 @@ namespace api\wxapp\controller;
  *     "create_time"             =>"2025-05-14 09:37:18",
  *     "version"                 =>"1.0",
  *     "use"                     => new \api\wxapp\controller\DrawController();
- *     "test_environment"        =>"http://pw216.ikun/api/wxapp/draw/index",
- *     "official_environment"    =>"https://pw216.aejust.net/api/wxapp/draw/index",
+ *     "test_environment"        =>"http://pw-shengbei.ikun:9090/api/wxapp/draw/index",
+ *     "official_environment"    =>"http://shengbei.ausite.cn/api/wxapp/draw/index",
  * )
  */
 
@@ -40,7 +40,7 @@ class DrawController extends AuthController
     /**
      * 默认接口
      * /api/wxapp/draw/index
-     * https://pw216.aejust.net/api/wxapp/draw/index
+     * http://shengbei.ausite.cn/api/wxapp/draw/index
      */
     public function index()
     {
@@ -100,8 +100,8 @@ class DrawController extends AuthController
      * )
      *
      *
-     *   test_environment: http://pw216.ikun/api/wxapp/draw/find_draw_list
-     *   official_environment: https://pw216.aejust.net/api/wxapp/draw/find_draw_list
+     *   test_environment: http://pw-shengbei.ikun:9090/api/wxapp/draw/find_draw_list
+     *   official_environment: http://shengbei.ausite.cn/api/wxapp/draw/find_draw_list
      *   api:  /wxapp/draw/find_draw_list
      *   remark_name: 奖池管理 列表
      *
@@ -180,8 +180,8 @@ class DrawController extends AuthController
      * )
      *
      *
-     *   test_environment: http://pw216.ikun/api/wxapp/draw/find_draw_list2
-     *   official_environment: https://pw216.aejust.net/api/wxapp/draw/find_draw_list2
+     *   test_environment: http://pw-shengbei.ikun:9090/api/wxapp/draw/find_draw_list2
+     *   official_environment: http://shengbei.ausite.cn/api/wxapp/draw/find_draw_list2
      *   api:  /wxapp/draw/find_draw_list2
      *   remark_name: 奖池管理 列表
      *
@@ -259,8 +259,8 @@ class DrawController extends AuthController
      *     @OA\Response(response="default", description="An example resource")
      * )
      *
-     *   test_environment: http://pw216.ikun/api/wxapp/draw/find_draw
-     *   official_environment: https://pw216.aejust.net/api/wxapp/draw/find_draw
+     *   test_environment: http://pw-shengbei.ikun:9090/api/wxapp/draw/find_draw
+     *   official_environment: http://shengbei.ausite.cn/api/wxapp/draw/find_draw
      *   api:  /wxapp/draw/find_draw
      *   remark_name: 奖池管理 详情
      *
@@ -312,8 +312,8 @@ class DrawController extends AuthController
      *     @OA\Response(response="default", description="An example resource")
      * )
      *
-     *   test_environment: http://pw216.ikun/api/wxapp/draw/draw
-     *   official_environment: https://pw216.aejust.net/api/wxapp/draw/draw
+     *   test_environment: http://pw-shengbei.ikun:9090/api/wxapp/draw/draw
+     *   official_environment: http://shengbei.ausite.cn/api/wxapp/draw/draw
      *   api:  /wxapp/draw/draw
      *   remark_name: 抽奖
      *
@@ -415,8 +415,8 @@ class DrawController extends AuthController
      *     @OA\Response(response="default", description="An example resource")
      * )
      *
-     *   test_environment: http://pw216.ikun/api/wxapp/draw/draw_code
-     *   official_environment: https://pw216.aejust.net/api/wxapp/draw/draw_code
+     *   test_environment: http://pw-shengbei.ikun:9090/api/wxapp/draw/draw_code
+     *   official_environment: http://shengbei.ausite.cn/api/wxapp/draw/draw_code
      *   api:  /wxapp/draw/draw_code
      *   remark_name: 兑换奖励
      *
@@ -493,8 +493,8 @@ class DrawController extends AuthController
      *     @OA\Response(response="default", description="An example resource")
      * )
      *
-     *   test_environment: http://pw216.ikun/api/wxapp/draw/my_draw_log
-     *   official_environment: https://pw216.aejust.net/api/wxapp/draw/my_draw_log
+     *   test_environment: http://pw-shengbei.ikun:9090/api/wxapp/draw/my_draw_log
+     *   official_environment: http://shengbei.ausite.cn/api/wxapp/draw/my_draw_log
      *   api:  /wxapp/draw/my_draw_log
      *   remark_name: 我的抽奖记录
      *
@@ -565,8 +565,8 @@ class DrawController extends AuthController
      *     @OA\Response(response="default", description="An example resource")
      * )
      *
-     *   test_environment: http://pw216.ikun/api/wxapp/draw/set_address
-     *   official_environment: https://pw216.aejust.net/api/wxapp/draw/set_address
+     *   test_environment: http://pw-shengbei.ikun:9090/api/wxapp/draw/set_address
+     *   official_environment: http://shengbei.ausite.cn/api/wxapp/draw/set_address
      *   api:  /wxapp/draw/set_address
      *   remark_name: 完善收货地址
      *
@@ -630,8 +630,8 @@ class DrawController extends AuthController
      *     @OA\Response(response="default", description="An example resource")
      * )
      *
-     *   test_environment: http://pw216.ikun/api/wxapp/draw/take_order
-     *   official_environment: https://pw216.aejust.net/api/wxapp/draw/take_order
+     *   test_environment: http://pw-shengbei.ikun:9090/api/wxapp/draw/take_order
+     *   official_environment: http://shengbei.ausite.cn/api/wxapp/draw/take_order
      *   api: /wxapp/draw/take_order
      *   remark_name: 确定收货 (确认完成)
      *

@@ -14,8 +14,8 @@ namespace api\wxapp\controller;
  *     "create_time"             =>"2024-04-14 10:00:42",
  *     "version"                 =>"1.0",
  *     "use"                     => new \api\wxapp\controller\PlayNoticeController();
- *     "test_environment"        =>"http://pw216.ikun/api/wxapp/play_notice/index",
- *     "official_environment"    =>"https://pw216.aejust.net/api/wxapp/play_notice/index",
+ *     "test_environment"        =>"http://pw-shengbei.ikun:9090/api/wxapp/play_notice/index",
+ *     "official_environment"    =>"http://shengbei.ausite.cn/api/wxapp/play_notice/index",
  * )
  */
 
@@ -43,7 +43,7 @@ class PlayNoticeController extends AuthController
     /**
      * 默认接口
      * /api/wxapp/play_notice/index
-     * https://pw216.aejust.net/api/wxapp/play_notice/index
+     * http://shengbei.ausite.cn/api/wxapp/play_notice/index
      */
     public function index()
     {
@@ -94,8 +94,8 @@ class PlayNoticeController extends AuthController
      * )
      *
      *
-     *   test_environment: http://pw216.ikun/api/wxapp/play_notice/find_play_notice_list
-     *   official_environment: https://pw216.aejust.net/api/wxapp/play_notice/find_play_notice_list
+     *   test_environment: http://pw-shengbei.ikun:9090/api/wxapp/play_notice/find_play_notice_list
+     *   official_environment: http://shengbei.ausite.cn/api/wxapp/play_notice/find_play_notice_list
      *   api:  /wxapp/play_notice/find_play_notice_list
      *   remark_name: 通知管理 列表
      *
@@ -148,8 +148,8 @@ class PlayNoticeController extends AuthController
      *     @OA\Response(response="default", description="An example resource")
      * )
      *
-     *   test_environment: http://pw216.ikun/api/wxapp/play_notice/find_play_notice
-     *   official_environment: https://pw216.aejust.net/api/wxapp/play_notice/find_play_notice
+     *   test_environment: http://pw-shengbei.ikun:9090/api/wxapp/play_notice/find_play_notice
+     *   official_environment: http://shengbei.ausite.cn/api/wxapp/play_notice/find_play_notice
      *   api:  /wxapp/play_notice/find_play_notice
      *   remark_name: 通知管理 详情
      *

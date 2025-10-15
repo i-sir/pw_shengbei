@@ -14,8 +14,8 @@ namespace api\wxapp\controller;
  *     "create_time"             =>"2024-04-25 14:15:06",
  *     "version"                 =>"1.0",
  *     "use"                     => new \api\wxapp\controller\CouponUserController();
- *     "test_environment"        =>"http://pw216.ikun/api/wxapp/coupon_user/index",
- *     "official_environment"    =>"https://pw216.aejust.net/api/wxapp/coupon_user/index",
+ *     "test_environment"        =>"http://pw-shengbei.ikun:9090/api/wxapp/coupon_user/index",
+ *     "official_environment"    =>"http://shengbei.ausite.cn/api/wxapp/coupon_user/index",
  * )
  */
 
@@ -43,7 +43,7 @@ class CouponUserController extends AuthController
     /**
      * 默认接口
      * /api/wxapp/coupon_user/index
-     * https://pw216.aejust.net/api/wxapp/coupon_user/index
+     * http://shengbei.ausite.cn/api/wxapp/coupon_user/index
      */
     public function index()
     {
@@ -94,8 +94,8 @@ class CouponUserController extends AuthController
      * )
      *
      *
-     *   test_environment: http://pw216.ikun/api/wxapp/coupon_user/find_coupon_user_list
-     *   official_environment: https://pw216.aejust.net/api/wxapp/coupon_user/find_coupon_user_list
+     *   test_environment: http://pw-shengbei.ikun:9090/api/wxapp/coupon_user/find_coupon_user_list
+     *   official_environment: http://shengbei.ausite.cn/api/wxapp/coupon_user/find_coupon_user_list
      *   api:  /wxapp/coupon_user/find_coupon_user_list
      *   remark_name: 优惠券领取记录 列表
      *
@@ -154,8 +154,8 @@ class CouponUserController extends AuthController
      * )
      *
      *
-     *   test_environment: http://pw216.ikun/api/wxapp/coupon_user/find_coupon_list
-     *   official_environment: https://pw216.aejust.net/api/wxapp/coupon_user/find_coupon_list
+     *   test_environment: http://pw-shengbei.ikun:9090/api/wxapp/coupon_user/find_coupon_list
+     *   official_environment: http://shengbei.ausite.cn/api/wxapp/coupon_user/find_coupon_list
      *   api:  /wxapp/coupon_user/find_coupon_list
      *   remark_name: 可领取优惠券列表
      *
@@ -217,8 +217,8 @@ class CouponUserController extends AuthController
      * )
      *
      *
-     *   test_environment: http://pw216.ikun/api/wxapp/coupon_user/add_coupon
-     *   official_environment: https://pw216.aejust.net/api/wxapp/coupon_user/add_coupon
+     *   test_environment: http://pw-shengbei.ikun:9090/api/wxapp/coupon_user/add_coupon
+     *   official_environment: http://shengbei.ausite.cn/api/wxapp/coupon_user/add_coupon
      *   api:  /wxapp/coupon_user/add_coupon
      *   remark_name: 领取优惠券
      *

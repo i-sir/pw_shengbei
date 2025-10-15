@@ -70,7 +70,7 @@ class PayController extends AuthController
      * @param int    $order_num 订单号
      * @return array
      *
-     *  https://pw216.aejust.net/api/wxapp/pay/transfer_batches
+     *  http://shengbei.ausite.cn/api/wxapp/pay/transfer_batches
      */
     public function transfer_batches($sOpenid = '***', $nMoney = 0.01, $order_num = 001)
     {

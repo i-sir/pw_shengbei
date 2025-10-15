@@ -14,8 +14,8 @@ namespace api\wxapp\controller;
  *     "create_time"             =>"2024-04-14 10:10:28",
  *     "version"                 =>"1.0",
  *     "use"                     => new \api\wxapp\controller\PlayClassController();
- *     "test_environment"        =>"http://pw216.ikun/api/wxapp/play_class/index",
- *     "official_environment"    =>"https://pw216.aejust.net/api/wxapp/play_class/index",
+ *     "test_environment"        =>"http://pw-shengbei.ikun:9090/api/wxapp/play_class/index",
+ *     "official_environment"    =>"http://shengbei.ausite.cn/api/wxapp/play_class/index",
  * )
  */
 
@@ -43,7 +43,7 @@ class PlayClassController extends AuthController
     /**
      * 默认接口
      * /api/wxapp/play_class/index
-     * https://pw216.aejust.net/api/wxapp/play_class/index
+     * http://shengbei.ausite.cn/api/wxapp/play_class/index
      */
     public function index()
     {
@@ -81,8 +81,8 @@ class PlayClassController extends AuthController
      * )
      *
      *
-     *   test_environment: http://pw216.ikun/api/wxapp/play_class/find_class_list
-     *   official_environment: https://pw216.aejust.net/api/wxapp/play_class/find_class_list
+     *   test_environment: http://pw-shengbei.ikun:9090/api/wxapp/play_class/find_class_list
+     *   official_environment: http://shengbei.ausite.cn/api/wxapp/play_class/find_class_list
      *   api:  /wxapp/play_class/find_class_list
      *   remark_name: 分类管理 列表
      *
@@ -156,8 +156,8 @@ class PlayClassController extends AuthController
      * )
      *
      *
-     *   test_environment: http://pw216.ikun/api/wxapp/play_class/find_two_class_list
-     *   official_environment: https://pw216.aejust.net/api/wxapp/play_class/find_two_class_list?pid=1
+     *   test_environment: http://pw-shengbei.ikun:9090/api/wxapp/play_class/find_two_class_list
+     *   official_environment: http://shengbei.ausite.cn/api/wxapp/play_class/find_two_class_list?pid=1
      *   api:  /wxapp/play_class/find_two_class_list
      *   remark_name: 分类管理 列表
      *
@@ -241,8 +241,8 @@ class PlayClassController extends AuthController
      * )
      *
      *
-     *   test_environment: http://pw216.ikun/api/wxapp/play_class/class_list
-     *   official_environment: https://pw216.aejust.net/api/wxapp/play_class/class_list
+     *   test_environment: http://pw-shengbei.ikun:9090/api/wxapp/play_class/class_list
+     *   official_environment: http://shengbei.ausite.cn/api/wxapp/play_class/class_list
      *   api:  /wxapp/play_class/class_list
      *   remark_name: 分类管理 一级,二级,插架格式
      *

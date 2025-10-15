@@ -57,8 +57,8 @@ class WeChatController extends AuthController
     /**
      * 发货测试用
      *
-     *   test_environment: http://pw216.ikun/api/wxapp/we_chat/send_shipping
-     *   official_environment: https://pw216.aejust.net/api/wxapp/we_chat/send_shipping
+     *   test_environment: http://pw-shengbei.ikun:9090/api/wxapp/we_chat/send_shipping
+     *   official_environment: http://shengbei.ausite.cn/api/wxapp/we_chat/send_shipping
      *   api: /wxapp/we_chat/send_shipping
      *   remark_name: 发货测试用
      *
@@ -77,8 +77,8 @@ class WeChatController extends AuthController
     /**
      * 订阅消息发送 测试用
      *
-     *   test_environment: http://pw216.ikun/api/wxapp/we_chat/send_test
-     *   official_environment: https://pw216.aejust.net/api/wxapp/we_chat/send_test
+     *   test_environment: http://pw-shengbei.ikun:9090/api/wxapp/we_chat/send_test
+     *   official_environment: http://shengbei.ausite.cn/api/wxapp/we_chat/send_test
      *   api: /wxapp/we_chat/send_test
      *   remark_name: 订阅消息发送 测试用
      *
@@ -179,8 +179,8 @@ class WeChatController extends AuthController
      * 获取超稳定 access_token
      * 该接口调用频率限制为 1万次 每分钟，每天限制调用 50万 次
      *
-     *   test_environment: http://pw216.ikun/api/wxapp/we_chat/get_stable_access_token
-     *   official_environment: https://pw216.aejust.net/api/wxapp/we_chat/get_stable_access_token
+     *   test_environment: http://pw-shengbei.ikun:9090/api/wxapp/we_chat/get_stable_access_token
+     *   official_environment: http://shengbei.ausite.cn/api/wxapp/we_chat/get_stable_access_token
      *   api: /wxapp/we_chat/get_stable_access_token
      *   remark_name: 获取稳定access_token
      *

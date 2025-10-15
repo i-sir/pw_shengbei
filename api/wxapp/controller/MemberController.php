@@ -51,8 +51,8 @@ class MemberController extends AuthController
      *     @OA\Response(response="default", description="An example resource")
      * )
      *
-     *   test_environment: http://pw216.ikun/api/wxapp/member/find_member
-     *   official_environment: https://pw216.aejust.net/api/wxapp/member/find_member
+     *   test_environment: http://pw-shengbei.ikun:9090/api/wxapp/member/find_member
+     *   official_environment: http://shengbei.ausite.cn/api/wxapp/member/find_member
      *   api: /wxapp/member/find_member
      *   remark_name: 查询会员信息
      *
@@ -147,8 +147,8 @@ class MemberController extends AuthController
      *     @OA\Response(response="default", description="An example resource")
      * )
      *
-     *   test_environment: http://pw216.ikun/api/wxapp/member/update_member
-     *   official_environment: https://pw216.aejust.net/api/wxapp/member/update_member
+     *   test_environment: http://pw-shengbei.ikun:9090/api/wxapp/member/update_member
+     *   official_environment: http://shengbei.ausite.cn/api/wxapp/member/update_member
      *   api: /wxapp/member/update_member
      *   remark_name: 更新会员信息
      *
@@ -238,8 +238,8 @@ class MemberController extends AuthController
      *     @OA\Response(response="default", description="An example resource")
      * )
      *
-     *   test_environment: http://pw216.ikun/api/wxapp/member/find_balance_list
-     *   official_environment: https://pw216.aejust.net/api/wxapp/member/find_balance_list
+     *   test_environment: http://pw-shengbei.ikun:9090/api/wxapp/member/find_balance_list
+     *   official_environment: http://shengbei.ausite.cn/api/wxapp/member/find_balance_list
      *   api: /wxapp/member/find_balance_list
      *   remark_name: 账户(余额)变动明细
      *
@@ -335,8 +335,8 @@ class MemberController extends AuthController
      *     @OA\Response(response="default", description="An example resource")
      * )
      *
-     *   test_environment: http://pw216.ikun/api/wxapp/member/find_point_list
-     *   official_environment: https://pw216.aejust.net/api/wxapp/member/find_point_list
+     *   test_environment: http://pw-shengbei.ikun:9090/api/wxapp/member/find_point_list
+     *   official_environment: http://shengbei.ausite.cn/api/wxapp/member/find_point_list
      *   api: /wxapp/member/find_point_list
      *   remark_name: 账户(积分)变动明细
      *
@@ -408,8 +408,8 @@ class MemberController extends AuthController
      *     @OA\Response(response="default", description="An example resource")
      * )
      *
-     *   test_environment: http://pw216.ikun/api/wxapp/member/find_team_list
-     *   official_environment: https://pw216.aejust.net/api/wxapp/member/find_team_list
+     *   test_environment: http://pw-shengbei.ikun:9090/api/wxapp/member/find_team_list
+     *   official_environment: http://shengbei.ausite.cn/api/wxapp/member/find_team_list
      *   api: /wxapp/member/find_team_list
      *   remark_name: 团队列表查询
      *
@@ -482,8 +482,8 @@ class MemberController extends AuthController
      *     @OA\Response(response="default", description="An example resource")
      * )
      *
-     *   test_environment: http://pw216.ikun/api/wxapp/member/poster
-     *   official_environment: https://pw216.aejust.net/api/wxapp/member/poster
+     *   test_environment: http://pw-shengbei.ikun:9090/api/wxapp/member/poster
+     *   official_environment: http://shengbei.ausite.cn/api/wxapp/member/poster
      *   api: /wxapp/member/poster
      *   remark_name: 获客海报
      *
@@ -495,7 +495,7 @@ class MemberController extends AuthController
         $MemberModel     = new \initmodel\MemberModel();//用户管理
         $MemberPlayModel = new \initmodel\MemberPlayModel(); //陪玩管理  (ps:InitModel)
         $Qr              = new QrInit();//二维码
-        $url             = "https://pw216.aejust.net/h5/#/pages/index/index?invite_code={$this->user_info['invite_code']}";
+        $url             = "http://shengbei.ausite.cn/h5/#/pages/index/index?invite_code={$this->user_info['invite_code']}";
 
         if (empty($this->user_info['invite_image'])) {
             //生成二维码

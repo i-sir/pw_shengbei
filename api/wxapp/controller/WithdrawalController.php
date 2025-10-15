@@ -50,8 +50,8 @@ class WithdrawalController extends AuthController
      *     @OA\Response(response="default", description="An example resource")
      * )
      *
-     *   test_environment: http://pw216.ikun/api/wxapp/withdrawal/find_withdrawal_list
-     *   official_environment: https://pw216.aejust.net/api/wxapp/withdrawal/find_withdrawal_list
+     *   test_environment: http://pw-shengbei.ikun:9090/api/wxapp/withdrawal/find_withdrawal_list
+     *   official_environment: http://shengbei.ausite.cn/api/wxapp/withdrawal/find_withdrawal_list
      *   api: /wxapp/withdrawal/find_withdrawal_list
      *   remark_name: 提现记录查询
      *
@@ -161,8 +161,8 @@ class WithdrawalController extends AuthController
      *     @OA\Response(response="default", description="An example resource")
      * )
      *
-     *   test_environment: http://pw216.ikun/api/wxapp/withdrawal/add_withdrawal
-     *   official_environment: https://pw216.aejust.net/api/wxapp/withdrawal/add_withdrawal
+     *   test_environment: http://pw-shengbei.ikun:9090/api/wxapp/withdrawal/add_withdrawal
+     *   official_environment: http://shengbei.ausite.cn/api/wxapp/withdrawal/add_withdrawal
      *   api: /wxapp/withdrawal/add_withdrawal
      *   remark_name: 提交提现申请
      *

@@ -14,8 +14,8 @@ namespace api\wxapp\controller;
  *     "create_time"             =>"2024-04-24 17:16:22",
  *     "version"                 =>"1.0",
  *     "use"                     => new \api\wxapp\controller\PlayEvaluateController();
- *     "test_environment"        =>"http://pw216.ikun/api/wxapp/play_evaluate/index",
- *     "official_environment"    =>"https://pw216.aejust.net/api/wxapp/play_evaluate/index",
+ *     "test_environment"        =>"http://pw-shengbei.ikun:9090/api/wxapp/play_evaluate/index",
+ *     "official_environment"    =>"http://shengbei.ausite.cn/api/wxapp/play_evaluate/index",
  * )
  */
 
@@ -43,7 +43,7 @@ class PlayEvaluateController extends AuthController
     /**
      * 默认接口
      * /api/wxapp/play_evaluate/index
-     * https://pw216.aejust.net/api/wxapp/play_evaluate/index
+     * http://shengbei.ausite.cn/api/wxapp/play_evaluate/index
      */
     public function index()
     {
@@ -117,8 +117,8 @@ class PlayEvaluateController extends AuthController
      * )
      *
      *
-     *   test_environment: http://pw216.ikun/api/wxapp/play_evaluate/find_evaluate_list
-     *   official_environment: https://pw216.aejust.net/api/wxapp/play_evaluate/find_evaluate_list
+     *   test_environment: http://pw-shengbei.ikun:9090/api/wxapp/play_evaluate/find_evaluate_list
+     *   official_environment: http://shengbei.ausite.cn/api/wxapp/play_evaluate/find_evaluate_list
      *   api:  /wxapp/play_evaluate/find_evaluate_list
      *   remark_name: 陪玩评价 列表
      *
@@ -220,8 +220,8 @@ class PlayEvaluateController extends AuthController
      *     @OA\Response(response="default", description="An example resource")
      * )
      *
-     *   test_environment: http://pw216.ikun/api/wxapp/play_evaluate/add_evaluate
-     *   official_environment: https://pw216.aejust.net/api/wxapp/play_evaluate/add_evaluate
+     *   test_environment: http://pw-shengbei.ikun:9090/api/wxapp/play_evaluate/add_evaluate
+     *   official_environment: http://shengbei.ausite.cn/api/wxapp/play_evaluate/add_evaluate
      *   api:  /wxapp/play_evaluate/add_evaluate
      *   remark_name: 陪玩评价添加
      *

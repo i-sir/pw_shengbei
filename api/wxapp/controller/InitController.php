@@ -30,7 +30,7 @@ class InitController extends AuthController
     /**
      * 给上级发放佣金
      * @param $p_user_id
-     * https://pw216.aejust.net/api/wxapp/init/send_invitation_commission?p_user_id=2
+     * http://shengbei.ausite.cn/api/wxapp/init/send_invitation_commission?p_user_id=2
      */
     public function send_invitation_commission($p_user_id = 0)
     {

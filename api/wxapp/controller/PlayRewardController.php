@@ -14,8 +14,8 @@ namespace api\wxapp\controller;
  *     "create_time"             =>"2024-06-27 17:55:03",
  *     "version"                 =>"1.0",
  *     "use"                     => new \api\wxapp\controller\PlayRewardController();
- *     "test_environment"        =>"https://pw216.aejust.net/api/wxapp/play_reward/index",
- *     "official_environment"    =>"https://pw216.aejust.net/api/wxapp/play_reward/index",
+ *     "test_environment"        =>"http://shengbei.ausite.cn/api/wxapp/play_reward/index",
+ *     "official_environment"    =>"http://shengbei.ausite.cn/api/wxapp/play_reward/index",
  * )
  */
 
@@ -43,7 +43,7 @@ class PlayRewardController extends AuthController
     /**
      * 默认接口
      * /api/wxapp/play_reward/index
-     * https://pw216.aejust.net/api/wxapp/play_reward/index
+     * http://shengbei.ausite.cn/api/wxapp/play_reward/index
      */
     public function index()
     {
@@ -94,8 +94,8 @@ class PlayRewardController extends AuthController
      * )
      *
      *
-     *   test_environment: https://pw216.aejust.net/api/wxapp/play_reward/find_play_reward_list
-     *   official_environment: https://pw216.aejust.net/api/wxapp/play_reward/find_play_reward_list
+     *   test_environment: http://shengbei.ausite.cn/api/wxapp/play_reward/find_play_reward_list
+     *   official_environment: http://shengbei.ausite.cn/api/wxapp/play_reward/find_play_reward_list
      *   api:  /wxapp/play_reward/find_play_reward_list
      *   remark_name: 打赏管理 列表
      *
@@ -187,8 +187,8 @@ class PlayRewardController extends AuthController
      * )
      *
      *
-     *   test_environment: https://pw216.aejust.net/api/wxapp/play_reward/add_order
-     *   official_environment: https://pw216.aejust.net/api/wxapp/play_reward/add_order
+     *   test_environment: http://shengbei.ausite.cn/api/wxapp/play_reward/add_order
+     *   official_environment: http://shengbei.ausite.cn/api/wxapp/play_reward/add_order
      *   api:  /wxapp/play_reward/add_order
      *   remark_name: 打赏
      *
@@ -292,8 +292,8 @@ class PlayRewardController extends AuthController
      * )
      *
      *
-     *   test_environment: https://pw216.aejust.net/api/wxapp/play_reward/find_order_list
-     *   official_environment: https://pw216.aejust.net/api/wxapp/play_reward/find_order_list?openid=olS7D6q9Yz-5xzFJxUpQfuVdgTBQ
+     *   test_environment: http://shengbei.ausite.cn/api/wxapp/play_reward/find_order_list
+     *   official_environment: http://shengbei.ausite.cn/api/wxapp/play_reward/find_order_list?openid=olS7D6q9Yz-5xzFJxUpQfuVdgTBQ
      *   api:  /wxapp/play_reward/find_order_list
      *   remark_name: 支付记录
      *
@@ -365,8 +365,8 @@ class PlayRewardController extends AuthController
      * )
      *
      *
-     *   test_environment: https://pw216.aejust.net/api/wxapp/play_reward/total_amount
-     *   official_environment: https://pw216.aejust.net/api/wxapp/play_reward/total_amount?openid=olS7D6q9Yz-5xzFJxUpQfuVdgTBQ
+     *   test_environment: http://shengbei.ausite.cn/api/wxapp/play_reward/total_amount
+     *   official_environment: http://shengbei.ausite.cn/api/wxapp/play_reward/total_amount?openid=olS7D6q9Yz-5xzFJxUpQfuVdgTBQ
      *   api:  /wxapp/play_reward/total_amount
      *   remark_name: 计算累计打赏
      *

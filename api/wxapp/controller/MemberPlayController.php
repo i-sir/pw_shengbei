@@ -14,8 +14,8 @@ namespace api\wxapp\controller;
  *     "create_time"             =>"2024-04-23 14:33:08",
  *     "version"                 =>"1.0",
  *     "use"                     => new \api\wxapp\controller\MemberPlayController();
- *     "test_environment"        =>"http://pw216.ikun/api/wxapp/member_play/index",
- *     "official_environment"    =>"https://pw216.aejust.net/api/wxapp/member_play/index",
+ *     "test_environment"        =>"http://pw-shengbei.ikun:9090/api/wxapp/member_play/index",
+ *     "official_environment"    =>"http://shengbei.ausite.cn/api/wxapp/member_play/index",
  * )
  */
 
@@ -43,7 +43,7 @@ class MemberPlayController extends AuthController
     /**
      * 默认接口
      * /api/wxapp/member_play/index
-     * https://pw216.aejust.net/api/wxapp/member_play/index
+     * http://shengbei.ausite.cn/api/wxapp/member_play/index
      */
     public function index()
     {
@@ -116,8 +116,8 @@ class MemberPlayController extends AuthController
      *     @OA\Response(response="default", description="An example resource")
      * )
      *
-     *   test_environment: http://pw216.ikun/api/wxapp/member_play/add_user_pass
-     *   official_environment: https://pw216.aejust.net/api/wxapp/member_play/add_user_pass
+     *   test_environment: http://pw-shengbei.ikun:9090/api/wxapp/member_play/add_user_pass
+     *   official_environment: http://shengbei.ausite.cn/api/wxapp/member_play/add_user_pass
      *   api: /wxapp/member_play/add_user_pass
      *   remark_name: 手机号密码注册
      *
@@ -205,8 +205,8 @@ class MemberPlayController extends AuthController
      *     @OA\Response(response="default", description="An example resource")
      * )
      *
-     *   test_environment: http://pw216.ikun/api/wxapp/member_play/pass_login
-     *   official_environment: https://pw216.aejust.net/api/wxapp/member_play/pass_login
+     *   test_environment: http://pw-shengbei.ikun:9090/api/wxapp/member_play/pass_login
+     *   official_environment: http://shengbei.ausite.cn/api/wxapp/member_play/pass_login
      *   api: /wxapp/member_play/pass_login
      *   remark_name: 手机号密码登录
      *
@@ -296,8 +296,8 @@ class MemberPlayController extends AuthController
      *     @OA\Response(response="default", description="An example resource")
      * )
      *
-     *   test_environment: http://pw216.ikun/api/wxapp/member_play/sms_login
-     *   official_environment: https://pw216.aejust.net/api/wxapp/member_play/sms_login
+     *   test_environment: http://pw-shengbei.ikun:9090/api/wxapp/member_play/sms_login
+     *   official_environment: http://shengbei.ausite.cn/api/wxapp/member_play/sms_login
      *   api: /wxapp/member_play/sms_login
      *   remark_name: 手机号验证码登录
      *
@@ -405,8 +405,8 @@ class MemberPlayController extends AuthController
      *     @OA\Response(response="default", description="An example resource")
      * )
      *
-     *   test_environment: http://pw216.ikun/api/wxapp/member_play/update_pass
-     *   official_environment: https://pw216.aejust.net/api/wxapp/member_play/update_pass
+     *   test_environment: http://pw-shengbei.ikun:9090/api/wxapp/member_play/update_pass
+     *   official_environment: http://shengbei.ausite.cn/api/wxapp/member_play/update_pass
      *   api: /wxapp/member_play/update_pass
      *   remark_name: 修改密码
      *
@@ -489,8 +489,8 @@ class MemberPlayController extends AuthController
      * )
      *
      *
-     *   test_environment: http://pw216.ikun/api/wxapp/member_play/find_member_play_list
-     *   official_environment: https://pw216.aejust.net/api/wxapp/member_play/find_member_play_list
+     *   test_environment: http://pw-shengbei.ikun:9090/api/wxapp/member_play/find_member_play_list
+     *   official_environment: http://shengbei.ausite.cn/api/wxapp/member_play/find_member_play_list
      *   api:  /wxapp/member_play/find_member_play_list
      *   remark_name: 陪玩列表
      *
@@ -561,8 +561,8 @@ class MemberPlayController extends AuthController
      *     @OA\Response(response="default", description="An example resource")
      * )
      *
-     *   test_environment: http://pw216.ikun/api/wxapp/member_play/find_member_play
-     *   official_environment: https://pw216.aejust.net/api/wxapp/member_play/find_member_play
+     *   test_environment: http://pw-shengbei.ikun:9090/api/wxapp/member_play/find_member_play
+     *   official_environment: http://shengbei.ausite.cn/api/wxapp/member_play/find_member_play
      *   api:  /wxapp/member_play/find_member_play
      *   remark_name: 陪玩管理 详情
      *
@@ -616,8 +616,8 @@ class MemberPlayController extends AuthController
      *     @OA\Response(response="default", description="An example resource")
      * )
      *
-     *   test_environment: http://pw216.ikun/api/wxapp/member_play/update_play
-     *   official_environment: https://pw216.aejust.net/api/wxapp/member_play/update_play
+     *   test_environment: http://pw-shengbei.ikun:9090/api/wxapp/member_play/update_play
+     *   official_environment: http://shengbei.ausite.cn/api/wxapp/member_play/update_play
      *   api:  /wxapp/member_play/update_play
      *   remark_name: 修改信息
      *
@@ -666,8 +666,8 @@ class MemberPlayController extends AuthController
      *     @OA\Response(response="default", description="An example resource")
      * )
      *
-     *   test_environment: http://pw216.ikun/api/wxapp/member_play/find_team_list
-     *   official_environment: https://pw216.aejust.net/api/wxapp/member_play/find_team_list
+     *   test_environment: http://pw-shengbei.ikun:9090/api/wxapp/member_play/find_team_list
+     *   official_environment: http://shengbei.ausite.cn/api/wxapp/member_play/find_team_list
      *   api: /wxapp/member_play/find_team_list
      *   remark_name: 团队列表查询
      *
@@ -749,8 +749,8 @@ class MemberPlayController extends AuthController
      *     @OA\Response(response="default", description="An example resource")
      * )
      *
-     *   test_environment: http://pw216.ikun/api/wxapp/member_play/statistics
-     *   official_environment: https://pw216.aejust.net/api/wxapp/member_play/statistics
+     *   test_environment: http://pw-shengbei.ikun:9090/api/wxapp/member_play/statistics
+     *   official_environment: http://shengbei.ausite.cn/api/wxapp/member_play/statistics
      *   api:  /wxapp/member_play/statistics
      *   remark_name: 统计管理
      *
@@ -828,8 +828,8 @@ class MemberPlayController extends AuthController
      *     @OA\Response(response="default", description="An example resource")
      * )
      *
-     *   test_environment: http://pw216.ikun/api/wxapp/member_play/find_level_list
-     *   official_environment: https://pw216.aejust.net/api/wxapp/member_play/find_level_list
+     *   test_environment: http://pw-shengbei.ikun:9090/api/wxapp/member_play/find_level_list
+     *   official_environment: http://shengbei.ausite.cn/api/wxapp/member_play/find_level_list
      *   api:  /wxapp/member_play/find_level_list
      *   remark_name: 等级列表
      *
@@ -879,8 +879,8 @@ class MemberPlayController extends AuthController
      *     @OA\Response(response="default", description="An example resource")
      * )
      *
-     *   test_environment: http://pw216.ikun/api/wxapp/member_play/user_statistics
-     *   official_environment: https://pw216.aejust.net/api/wxapp/member_play/user_statistics
+     *   test_environment: http://pw-shengbei.ikun:9090/api/wxapp/member_play/user_statistics
+     *   official_environment: http://shengbei.ausite.cn/api/wxapp/member_play/user_statistics
      *   api:  /wxapp/member_play/user_statistics
      *   remark_name: 所有人 统计管理
      *

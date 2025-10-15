@@ -42,7 +42,7 @@ class ChatController extends AuthController
      *    @OA\Response(response="default", description="An example resource")
      * )
      *
-     * https://pw216.aejust.net/api/wxapp/chat/get_uid?openid=olS7D6q9Yz-5xzFJxUpQfuVdgTBQ
+     * http://shengbei.ausite.cn/api/wxapp/chat/get_uid?openid=olS7D6q9Yz-5xzFJxUpQfuVdgTBQ
      *
      */
     public function get_uid()

@@ -14,8 +14,8 @@ namespace api\wxapp\controller;
  *     "create_time"             =>"2025-06-09 16:21:34",
  *     "version"                 =>"1.0",
  *     "use"                     => new \api\wxapp\controller\MemberPointOrderController();
- *     "test_environment"        =>"https://pw216.aejust.net/api/wxapp/member_point_order/index",
- *     "official_environment"    =>"https://pw216.aejust.net/api/wxapp/member_point_order/index",
+ *     "test_environment"        =>"http://shengbei.ausite.cn/api/wxapp/member_point_order/index",
+ *     "official_environment"    =>"http://shengbei.ausite.cn/api/wxapp/member_point_order/index",
  * )
  */
 
@@ -43,7 +43,7 @@ class MemberPointOrderController extends AuthController
     /**
      * 默认接口
      * /api/wxapp/member_point_order/index
-     * https://pw216.aejust.net/api/wxapp/member_point_order/index
+     * http://shengbei.ausite.cn/api/wxapp/member_point_order/index
      */
     public function index()
     {
@@ -96,8 +96,8 @@ class MemberPointOrderController extends AuthController
      *     @OA\Response(response="default", description="An example resource")
      * )
      *
-     *   test_environment: https://pw216.aejust.net/api/wxapp/member_point_order/add_order
-     *   official_environment: https://pw216.aejust.net/api/wxapp/member_point_order/add_order
+     *   test_environment: http://shengbei.ausite.cn/api/wxapp/member_point_order/add_order
+     *   official_environment: http://shengbei.ausite.cn/api/wxapp/member_point_order/add_order
      *   api:  /wxapp/member_point_order/add_order
      *   remark_name: 充值保证金 编辑&添加
      *

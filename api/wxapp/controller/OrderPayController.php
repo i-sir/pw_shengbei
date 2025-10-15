@@ -73,8 +73,8 @@ class OrderPayController extends AuthController
      *     @OA\Response(response="default", description="An example resource")
      * )
      *
-     *   test_environment: http://pw216.ikun/api/wxapp/order_pay/wx_pay_mp
-     *   official_environment: https://pw216.aejust.net/api/wxapp/order_pay/wx_pay_mp?pay_order_type=20&pay_type=1&order_num=250106455482029166&openid=olS7D6iUYhg3hq6EjLPw8yod052g
+     *   test_environment: http://pw-shengbei.ikun:9090/api/wxapp/order_pay/wx_pay_mp
+     *   official_environment: http://shengbei.ausite.cn/api/wxapp/order_pay/wx_pay_mp?pay_order_type=20&pay_type=1&order_num=250106455482029166&openid=olS7D6iUYhg3hq6EjLPw8yod052g
      *   api: /wxapp/order_pay/wx_pay_mp
      *   remark_name: 微信公众号支付
      *
@@ -191,7 +191,7 @@ class OrderPayController extends AuthController
     }
 
 
-    //https://pw216.aejust.net/api/wxapp/order_pay/wx_pay_refund_test?order_num=250610206819667730
+    //http://shengbei.ausite.cn/api/wxapp/order_pay/wx_pay_refund_test?order_num=250610206819667730
     public function wx_pay_refund_test()
     {
         $params = $this->request->param();
@@ -274,8 +274,8 @@ class OrderPayController extends AuthController
      *     @OA\Response(response="default", description="An example resource")
      * )
      *
-     *   test_environment: http://pw216.ikun/api/wxapp/order_pay/ali_pay_wap
-     *   official_environment: https://pw216.aejust.net/api/wxapp/order_pay/ali_pay_wap
+     *   test_environment: http://pw-shengbei.ikun:9090/api/wxapp/order_pay/ali_pay_wap
+     *   official_environment: http://shengbei.ausite.cn/api/wxapp/order_pay/ali_pay_wap
      *   api: /wxapp/order_pay/ali_pay_wap
      *   remark_name: 支付宝h5支付
      *
@@ -341,8 +341,8 @@ class OrderPayController extends AuthController
      * @return void
      *
      *
-     *   test_environment: http://pw216.ikun/api/wxapp/order_pay/ali_transfer_accounts
-     *   official_environment: https://pw216.aejust.net/api/wxapp/order_pay/ali_transfer_accounts
+     *   test_environment: http://pw-shengbei.ikun:9090/api/wxapp/order_pay/ali_transfer_accounts
+     *   official_environment: http://shengbei.ausite.cn/api/wxapp/order_pay/ali_transfer_accounts
      *   api: /wxapp/order_pay/ali_transfer_accounts
      *   remark_name: 支付宝转账
      *

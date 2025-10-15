@@ -14,8 +14,8 @@ namespace api\wxapp\controller;
  *     "create_time"             =>"2024-12-09 16:14:48",
  *     "version"                 =>"1.0",
  *     "use"                     => new \api\wxapp\controller\PlayHireController();
- *     "test_environment"        =>"http://pw216.ikun/api/wxapp/play_hire/index",
- *     "official_environment"    =>"https://pw216.aejust.net/api/wxapp/play_hire/index",
+ *     "test_environment"        =>"http://pw-shengbei.ikun:9090/api/wxapp/play_hire/index",
+ *     "official_environment"    =>"http://shengbei.ausite.cn/api/wxapp/play_hire/index",
  * )
  */
 
@@ -43,7 +43,7 @@ class PlayHireController extends AuthController
     /**
      * 默认接口
      * /api/wxapp/play_hire/index
-     * https://pw216.aejust.net/api/wxapp/play_hire/index
+     * http://shengbei.ausite.cn/api/wxapp/play_hire/index
      */
     public function index()
     {
@@ -94,8 +94,8 @@ class PlayHireController extends AuthController
      * )
      *
      *
-     *   test_environment: http://pw216.ikun/api/wxapp/play_hire/find_play_list
-     *   official_environment: https://pw216.aejust.net/api/wxapp/play_hire/find_play_list
+     *   test_environment: http://pw-shengbei.ikun:9090/api/wxapp/play_hire/find_play_list
+     *   official_environment: http://shengbei.ausite.cn/api/wxapp/play_hire/find_play_list
      *   api:  /wxapp/play_hire/find_play_list
      *   remark_name: 游戏分类列表
      *
@@ -210,8 +210,8 @@ class PlayHireController extends AuthController
      * )
      *
      *
-     *   test_environment: http://pw216.ikun/api/wxapp/play_hire/find_hire_list
-     *   official_environment: https://pw216.aejust.net/api/wxapp/play_hire/find_hire_list
+     *   test_environment: http://pw-shengbei.ikun:9090/api/wxapp/play_hire/find_hire_list
+     *   official_environment: http://shengbei.ausite.cn/api/wxapp/play_hire/find_hire_list
      *   api:  /wxapp/play_hire/find_hire_list
      *   remark_name: 租号管理 列表
      *
@@ -270,8 +270,8 @@ class PlayHireController extends AuthController
      *     @OA\Response(response="default", description="An example resource")
      * )
      *
-     *   test_environment: http://pw216.ikun/api/wxapp/play_hire/find_hire
-     *   official_environment: https://pw216.aejust.net/api/wxapp/play_hire/find_hire
+     *   test_environment: http://pw-shengbei.ikun:9090/api/wxapp/play_hire/find_hire
+     *   official_environment: http://shengbei.ausite.cn/api/wxapp/play_hire/find_hire
      *   api:  /wxapp/play_hire/find_hire
      *   remark_name: 租号管理 详情
      *

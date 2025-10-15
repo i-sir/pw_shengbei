@@ -14,8 +14,8 @@ namespace api\wxapp\controller;
  *     "create_time"             =>"2024-04-15 14:19:38",
  *     "version"                 =>"1.0",
  *     "use"                     => new \api\wxapp\controller\PlayPackageOrderController();
- *     "test_environment"        =>"http://pw216.ikun/api/wxapp/play_order/index",
- *     "official_environment"    =>"https://pw216.aejust.net/api/wxapp/play_order/index",
+ *     "test_environment"        =>"http://pw-shengbei.ikun:9090/api/wxapp/play_order/index",
+ *     "official_environment"    =>"http://shengbei.ausite.cn/api/wxapp/play_order/index",
  * )
  */
 
@@ -48,7 +48,7 @@ class PlayOrderController extends AuthController
     /**
      * 默认接口
      * /api/wxapp/play_order/index
-     * https://pw216.aejust.net/api/wxapp/play_order/index
+     * http://shengbei.ausite.cn/api/wxapp/play_order/index
      */
     public function index()
     {
@@ -121,8 +121,8 @@ class PlayOrderController extends AuthController
      * )
      *
      *
-     *   test_environment: http://pw216.ikun/api/wxapp/play_order/find_order_list
-     *   official_environment: https://pw216.aejust.net/api/wxapp/play_order/find_order_list?is_receive=true
+     *   test_environment: http://pw-shengbei.ikun:9090/api/wxapp/play_order/find_order_list
+     *   official_environment: http://shengbei.ausite.cn/api/wxapp/play_order/find_order_list?is_receive=true
      *   api:  /wxapp/play_order/find_order_list
      *   remark_name: 陪玩订单 列表
      *
@@ -249,8 +249,8 @@ class PlayOrderController extends AuthController
      * )
      *
      *
-     *   test_environment: http://pw216.ikun/api/wxapp/play_order/is_new_order
-     *   official_environment: https://pw216.aejust.net/api/wxapp/play_order/is_new_order
+     *   test_environment: http://pw-shengbei.ikun:9090/api/wxapp/play_order/is_new_order
+     *   official_environment: http://shengbei.ausite.cn/api/wxapp/play_order/is_new_order
      *   api:  /wxapp/play_order/is_new_order
      *   remark_name: 新订单
      *
@@ -349,8 +349,8 @@ class PlayOrderController extends AuthController
      *     @OA\Response(response="default", description="An example resource")
      * )
      *
-     *   test_environment: http://pw216.ikun/api/wxapp/play_order/find_order
-     *   official_environment: https://pw216.aejust.net/api/wxapp/play_order/find_order
+     *   test_environment: http://pw-shengbei.ikun:9090/api/wxapp/play_order/find_order
+     *   official_environment: http://shengbei.ausite.cn/api/wxapp/play_order/find_order
      *   api:  /wxapp/play_order/find_order
      *   remark_name: 陪玩订单 详情
      *
@@ -415,8 +415,8 @@ class PlayOrderController extends AuthController
      *     @OA\Response(response="default", description="An example resource")
      * )
      *
-     *   test_environment: http://pw216.ikun/api/wxapp/play_order/receive_order
-     *   official_environment: https://pw216.aejust.net/api/wxapp/play_order/receive_order
+     *   test_environment: http://pw-shengbei.ikun:9090/api/wxapp/play_order/receive_order
+     *   official_environment: http://shengbei.ausite.cn/api/wxapp/play_order/receive_order
      *   api:  /wxapp/play_order/receive_order
      *   remark_name: 接单
      *
@@ -554,7 +554,7 @@ class PlayOrderController extends AuthController
         $this->success("接单成功");
     }
 
-    //获取验证码 https://pw216.aejust.net/api/wxapp/play_order/verify
+    //获取验证码 http://shengbei.ausite.cn/api/wxapp/play_order/verify
     public function verify()
     {
         $uniqid = md5(cmf_random_string(30, 3));
@@ -569,7 +569,7 @@ class PlayOrderController extends AuthController
 
 
     //验证码验证
-    // https://pw216.aejust.net/api/wxapp/play_order/check?code=fp2hb&uniqid=###bd067e6e3610345bbc7a972f249328ed
+    // http://shengbei.ausite.cn/api/wxapp/play_order/check?code=fp2hb&uniqid=###bd067e6e3610345bbc7a972f249328ed
     public function check()
     {
         $params = $this->request->param();
@@ -617,8 +617,8 @@ class PlayOrderController extends AuthController
      *     @OA\Response(response="default", description="An example resource")
      * )
      *
-     *   test_environment: http://pw216.ikun/api/wxapp/play_order/begin_order
-     *   official_environment: https://pw216.aejust.net/api/wxapp/play_order/begin_order
+     *   test_environment: http://pw-shengbei.ikun:9090/api/wxapp/play_order/begin_order
+     *   official_environment: http://shengbei.ausite.cn/api/wxapp/play_order/begin_order
      *   api:  /wxapp/play_order/begin_order
      *   remark_name: 开始服务
      *
@@ -727,8 +727,8 @@ class PlayOrderController extends AuthController
      *     @OA\Response(response="default", description="An example resource")
      * )
      *
-     *   test_environment: http://pw216.ikun/api/wxapp/play_order/add_paly_user
-     *   official_environment: https://pw216.aejust.net/api/wxapp/play_order/add_paly_user
+     *   test_environment: http://pw-shengbei.ikun:9090/api/wxapp/play_order/add_paly_user
+     *   official_environment: http://shengbei.ausite.cn/api/wxapp/play_order/add_paly_user
      *   api:  /wxapp/play_order/add_paly_user
      *   remark_name: 团队接单,增加陪玩
      *
@@ -835,8 +835,8 @@ class PlayOrderController extends AuthController
      *     @OA\Response(response="default", description="An example resource")
      * )
      *
-     *   test_environment: http://pw216.ikun/api/wxapp/play_order/order_user_list
-     *   official_environment: https://pw216.aejust.net/api/wxapp/play_order/order_user_list
+     *   test_environment: http://pw-shengbei.ikun:9090/api/wxapp/play_order/order_user_list
+     *   official_environment: http://shengbei.ausite.cn/api/wxapp/play_order/order_user_list
      *   api:  /wxapp/play_order/order_user_list
      *   remark_name: 订单陪玩列表
      *
@@ -945,8 +945,8 @@ class PlayOrderController extends AuthController
      *     @OA\Response(response="default", description="An example resource")
      * )
      *
-     *   test_environment: http://pw216.ikun/api/wxapp/play_order/update_order_user
-     *   official_environment: https://pw216.aejust.net/api/wxapp/play_order/update_order_user
+     *   test_environment: http://pw-shengbei.ikun:9090/api/wxapp/play_order/update_order_user
+     *   official_environment: http://shengbei.ausite.cn/api/wxapp/play_order/update_order_user
      *   api:  /wxapp/play_order/update_order_user
      *   remark_name: 修改更换陪玩
      *
@@ -1092,8 +1092,8 @@ class PlayOrderController extends AuthController
      *     @OA\Response(response="default", description="An example resource")
      * )
      *
-     *   test_environment: http://pw216.ikun/api/wxapp/play_order/delete_order_user
-     *   official_environment: https://pw216.aejust.net/api/wxapp/play_order/delete_order_user
+     *   test_environment: http://pw-shengbei.ikun:9090/api/wxapp/play_order/delete_order_user
+     *   official_environment: http://shengbei.ausite.cn/api/wxapp/play_order/delete_order_user
      *   api:  /wxapp/play_order/delete_order_user
      *   remark_name: 删除陪玩
      *
@@ -1204,8 +1204,8 @@ class PlayOrderController extends AuthController
      *     @OA\Response(response="default", description="An example resource")
      * )
      *
-     *   test_environment: http://pw216.ikun/api/wxapp/play_order/main_order_user
-     *   official_environment: https://pw216.aejust.net/api/wxapp/play_order/main_order_user
+     *   test_environment: http://pw-shengbei.ikun:9090/api/wxapp/play_order/main_order_user
+     *   official_environment: http://shengbei.ausite.cn/api/wxapp/play_order/main_order_user
      *   api:  /wxapp/play_order/main_order_user
      *   remark_name: 切换主陪玩
      *
@@ -1272,8 +1272,8 @@ class PlayOrderController extends AuthController
      *     @OA\Response(response="default", description="An example resource")
      * )
      *
-     *   test_environment: http://pw216.ikun/api/wxapp/play_order/cancel_order
-     *   official_environment: https://pw216.aejust.net/api/wxapp/play_order/cancel_order
+     *   test_environment: http://pw-shengbei.ikun:9090/api/wxapp/play_order/cancel_order
+     *   official_environment: http://shengbei.ausite.cn/api/wxapp/play_order/cancel_order
      *   api:  /wxapp/play_order/cancel_order
      *   remark_name: 取消订单
      *
@@ -1528,8 +1528,8 @@ class PlayOrderController extends AuthController
      *     @OA\Response(response="default", description="An example resource")
      * )
      *
-     *   test_environment: http://pw216.ikun/api/wxapp/play_order/accomplish_order
-     *   official_environment: https://pw216.aejust.net/api/wxapp/play_order/accomplish_order
+     *   test_environment: http://pw-shengbei.ikun:9090/api/wxapp/play_order/accomplish_order
+     *   official_environment: http://shengbei.ausite.cn/api/wxapp/play_order/accomplish_order
      *   api:  /wxapp/play_order/accomplish_order
      *   remark_name: 完成订单
      *
@@ -1613,8 +1613,8 @@ class PlayOrderController extends AuthController
      *     @OA\Response(response="default", description="An example resource")
      * )
      *
-     *   test_environment: http://pw216.ikun/api/wxapp/play_order/accomplish_images
-     *   official_environment: https://pw216.aejust.net/api/wxapp/play_order/accomplish_images
+     *   test_environment: http://pw-shengbei.ikun:9090/api/wxapp/play_order/accomplish_images
+     *   official_environment: http://shengbei.ausite.cn/api/wxapp/play_order/accomplish_images
      *   api:  /wxapp/play_order/accomplish_images
      *   remark_name: 更新截图
      *
