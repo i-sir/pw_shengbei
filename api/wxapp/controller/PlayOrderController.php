@@ -467,12 +467,12 @@ class PlayOrderController extends AuthController
 
 
             //2.是否忙碌
-            $map20    = [];
-            $map20[]  = ['where_play_user_ids', 'like', "%/{$this->user_id}/%"];
-            $map20[]  = ['status', 'in', [30, 40]];//服务中,待服务和不可以接单
-            $is_order = $PlayPackageOrderModel->where($map20)->count();
-            if ($is_order) $this->error('您有未完成的订单!');
-
+            //            $map20    = [];
+            //            $map20[]  = ['where_play_user_ids', 'like', "%/{$this->user_id}/%"];
+            //            $map20[]  = ['status', 'in', [30, 40]];//服务中,待服务和不可以接单
+            //            $is_order = $PlayPackageOrderModel->where($map20)->count();
+            //            if ($is_order) $this->error('您有未完成的订单!');
+  
 
         }
 
